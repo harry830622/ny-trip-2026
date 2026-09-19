@@ -30,7 +30,7 @@ function findDeadline(stops, currentIndex, nowMinutes) {
   return null;
 }
 
-const EMPTY = { daysToGo: null, current: null, next: null, nextIsTomorrow: false, leaveBy: null, minutesToLeave: null, deadline: null };
+const EMPTY = { daysToGo: null, current: null, next: null, nextIsTomorrow: false, leaveBy: null, minutesToLeave: null, arriveBy: null, minutesToArrive: null, minutesToNext: null, deadline: null };
 
 export function computeState(itinerary, now) {
   const { days } = itinerary;
@@ -66,14 +66,17 @@ export function computeState(itinerary, now) {
     deadline: findDeadline(stops, currentIndex, now.minutes),
   };
 
-  if (!current) return { ...base, status: "day-not-started" };
+  if (!current) return { ...base, status: "day-not-started", minutesToNext: toMinutes(nextToday.start) - now.minutes };
   if (!nextToday) return { ...base, status: "day-done" };
 
   const leaveAt = leaveByMinutes(current, nextToday);
+  const arriveAt = arrivalTarget(nextToday);
   return {
     ...base,
     leaveBy: formatMinutes(leaveAt),
     minutesToLeave: leaveAt - now.minutes,
+    arriveBy: formatMinutes(arriveAt),
+    minutesToArrive: arriveAt - now.minutes,
     status: now.minutes >= leaveAt ? "should-leave" : "at-stop",
   };
 }

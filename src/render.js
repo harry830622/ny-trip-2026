@@ -91,6 +91,8 @@ export function renderCall(el, state) {
 function tapeStrip(state) {
   const { deadline, next, nextIsTomorrow } = state;
   if (!isDeadlineVisible(deadline)) return "";
+  // Before the day's first departure the call itself carries this deadline; the strip would only repeat it.
+  if (state.status === "day-not-started" && state.minutesToNext === deadline.minutesUntil) return "";
   // When the booked stop is simply what comes next, the call and the next cue already say it.
   if (!nextIsTomorrow && next && next.id === deadline.stop.id) return "";
   return `<p class="tape-strip ${deadline.severity === "late" ? "is-late" : ""}"><span class="tape-strip-label">已訂</span>${escapeHtml(plainText(deadlineLine(deadline)))}</p>`;
@@ -128,9 +130,10 @@ function nextBlock(state, standIns) {
   return `
     <section class="next" aria-labelledby="next-title">
       <div class="lead-row has-thumb">
-        <p class="lead-time"><span class="time">${next.start}</span><span class="lead-label">${state.nextIsTomorrow ? "明天" : "下一站"}</span></p>
+        <p class="lead-time"><span class="time">${next.arriveBy ?? next.start}</span><span class="lead-label">${state.nextIsTomorrow ? "明天" : "下一站"}</span>${next.arriveBy ? '<span class="lead-label">前到</span>' : ""}</p>
         <div class="lead-body">
           <h2 id="next-title">${title(next)}${bookedTag(next)}</h2>
+          ${next.arriveBy ? `<p class="arrive-note">訂位 ${next.start}，要提早到</p>` : ""}
           ${leg ? `<p class="leg">${legInner(leg)}</p>` : ""}
         </div>
         ${plate(next, "plate-thumb", standIns)}
@@ -192,7 +195,7 @@ export function renderTimeline(el, day, { dayPosition, currentId, standIns }) {
         <li class="${classes}">
           <details ${isCurrent ? "open" : ""}>
             <summary>
-              <span class="cue-time"><span class="time">${stop.start}</span>${isPlayed ? "" : outTime(stop, day.stops[index + 1] ?? null)}</span>
+              <span class="cue-time"><span class="time">${stop.start}</span>${isPlayed || !stop.arriveBy ? "" : `<span class="out">到 ${stop.arriveBy}</span>`}${isPlayed ? "" : outTime(stop, day.stops[index + 1] ?? null)}</span>
               <span class="code" aria-hidden="true">${KIND_CODES[stop.kind]}</span>
               <span class="cue-title">${title(stop)}${bookedTag(stop)}</span>
               ${plate(stop, "plate-thumb", standIns)}

@@ -1,6 +1,7 @@
 const DEADLINE_VISIBLE_MINUTES = 120;
 const WARNING_MINUTES = 15;
-const PRESSING_MINUTES = 60;
+// How long the call insists "leave now" before it stops guessing and calls the arrival instead.
+const ALERT_GRACE_MINUTES = 5;
 const MODE_LABELS = { walk: "走路", transit: "大眾運輸", drive: "叫車" };
 
 export function formatDuration(minutes) {
@@ -16,47 +17,66 @@ export function legLine(leg) {
   return leg.untested ? `${line}（未實測）` : line;
 }
 
-// A booked stop is a different kind of thing from a suggestion. A call is hard when missing it
-// costs a booking: the next stop is booked, or a booking's departure is within the hour.
+// A booked stop is a different kind of thing from a suggestion. A call is hard, and floods the band,
+// only when missing it costs a booking: the very next stop is booked. A booking further down the day
+// is the tape strip's job, so the call never contradicts it.
 function isHard(state) {
-  if (state.next?.booked && !state.nextIsTomorrow) return true;
-  return Boolean(state.deadline) && state.deadline.minutesUntil <= PRESSING_MINUTES;
+  return Boolean(state.next?.booked) && !state.nextIsTomorrow;
 }
 
-// What the call at the top of the sheet says. It is a warning system, not a stop/go sign:
-// `cue` is idle (nothing to call), hold (time to spare), warning (leave within fifteen minutes),
-// alert (leave now) or done. There are no signage words; the flood is the signal. `hard` says
-// whether the band floods at all: only when missing the call would cost a booking.
+// What the call at the top of the sheet says. It is a warning system, not a stop/go sign, and it only has
+// a clock: it never knows where we are. So it claims "leave now" for a few minutes at leave-by and then
+// stops guessing: it calls the time we must ARRIVE, which is true whether or not we have left.
+// `cue` is idle, hold, warning, alert, transit or done. There are no signage words. `hard` says whether
+// the band floods; the arrival call never does, because in transit the clock cannot tell late from on time.
 export function callSheet(state) {
   const sheet = callFor(state);
-  const hard = (sheet.cue === "warning" || sheet.cue === "alert") && isHard(state);
+  const floods = sheet.cue === "warning" || sheet.cue === "alert";
+  const hard = floods && (sheet.certain || isHard(state));
   return { cue: sheet.cue, hard, big: sheet.big, tail: sheet.tail, detail: sheet.detail };
 }
 
 function callFor(state) {
   switch (state.status) {
-    case "day-not-started":
+    case "day-not-started": {
       if (state.phase === "before") {
         return { cue: "idle", big: String(state.daysToGo), tail: "天後出發", detail: `第一站 ${state.next.start} ${state.next.title}` };
       }
+      // The first stop of a day is the departure itself. Warn only when a booking depends on leaving on time.
+      const bookingDepends = Boolean(state.deadline) && state.deadline.minutesUntil <= WARNING_MINUTES;
+      if (bookingDepends && state.minutesToNext <= WARNING_MINUTES) {
+        return { cue: "warning", certain: true, big: state.next.start, tail: "準備出發", detail: `還有 ${formatDuration(state.minutesToNext)}` };
+      }
       return { cue: "idle", big: state.next.start, tail: "出發", detail: "今天還沒開始" };
+    }
     case "at-stop": {
       const inFlight = state.current.kind === "flight";
-      const isWarning = !inFlight && state.minutesToLeave <= WARNING_MINUTES;
+      const nextIsFlight = state.next?.kind === "flight";
+      // Boarding is the airline's call, not this sheet's: waiting for a flight never warns.
+      const isWarning = !inFlight && !nextIsFlight && state.minutesToLeave <= WARNING_MINUTES;
+      const calmTail = inFlight ? "落地" : nextIsFlight ? "起飛" : "前離開";
       return {
         cue: isWarning ? "warning" : "hold",
         big: state.leaveBy,
-        tail: inFlight ? "落地" : "前離開",
+        tail: isWarning ? "準備離開" : calmTail,
         detail: `還有 ${formatDuration(state.minutesToLeave)}`,
       };
     }
-    case "should-leave":
-      return {
-        cue: "alert",
-        big: state.leaveBy,
-        tail: "該出發了",
-        detail: state.minutesToLeave === 0 ? "現在出發" : `已超過 ${formatDuration(state.minutesToLeave)}`,
-      };
+    case "should-leave": {
+      // Past the arrive-by time we may already be seated; the clock cannot tell. State the fact, do not flood.
+      if (state.minutesToArrive < 0) {
+        return { cue: "transit", big: state.arriveBy, tail: "該到了", detail: `已超過 ${formatDuration(state.minutesToArrive)}` };
+      }
+      if (-state.minutesToLeave < ALERT_GRACE_MINUTES) {
+        return {
+          cue: "alert",
+          big: state.leaveBy,
+          tail: "該出發了",
+          detail: state.minutesToLeave === 0 ? "現在出發" : `已超過 ${formatDuration(state.minutesToLeave)}`,
+        };
+      }
+      return { cue: "transit", big: state.arriveBy, tail: "前到下一站", detail: `還有 ${formatDuration(state.minutesToArrive)}` };
+    }
     case "day-done":
       if (state.nextIsTomorrow) {
         return { cue: "done", big: state.next.start, tail: "明天出發", detail: "今天行程結束" };
