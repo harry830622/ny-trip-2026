@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="紐約行">
+  <title>2026 紐約行</title>
+  <link rel="preload" href="fonts/league-gothic-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-cue="idle">
+  <main class="stage">
+    <div class="prompt">
+      <header id="header" class="title-block"></header>
+      <div id="preview-banner" class="rehearsal" hidden></div>
+      <section id="call" class="call" aria-live="polite" aria-label="離開時間"></section>
+      <div id="cards"></div>
+      <button type="button" id="pull" class="pull" aria-expanded="false" aria-controls="order"></button>
+    </div>
+    <div class="order-col">
+      <div id="order" class="order">
+        <div class="order-inner">
+          <nav id="tabs" class="tabs" aria-label="選擇日期"></nav>
+          <div class="order-head" aria-hidden="true"><span>時間<br>離開</span><span>流程</span></div>
+          <ol id="timeline" class="timeline"></ol>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="colophon">
+    <a href="credits.html">照片來源</a>
+    <button type="button" id="preview-toggle">排練其他時間</button>
+    <input type="datetime-local" id="preview-input" aria-label="排練時間（紐約）" min="2026-10-02T00:00" max="2026-10-05T23:59" hidden>
+  </footer>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

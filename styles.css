@@ -1,0 +1,274 @@
+/* The Running Order: a stage manager's sheet. One ink on one ground; colour is warning, alert and tape only. */
+
+@font-face {
+  font-family: "League Gothic";
+  src: url("fonts/league-gothic-latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --ground: #ffffff;
+  --ink: #0d0d0d;
+  --ink-2: #4a4a4a;
+  --ink-played: #767676;
+  --hairline: #cfcfcb;
+  --plate-ground: #e8e8e4;
+
+  /* Reserved by law, as a warning system and not a stop/go sign: yellow is the warning (leave within
+     fifteen minutes), red is the alert (leave now), pink is booked. Nothing else may use them, and there
+     is no green: green says safe, and nothing on this sheet is ever safe to ignore. */
+  --warning-yellow: #ffd400;
+  --alert-red: #c81e1e;
+  --tape-pink: #ff3d8b;
+  --tape-ink: #0d0d0d;
+
+  --gothic: "League Gothic", "Arial Narrow", sans-serif;
+  --sans: -apple-system, BlinkMacSystemFont, "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+
+  --rule-heavy: 3px solid var(--ink);
+  --rule-hair: 1px solid var(--hairline);
+  --gutter: max(1rem, calc((100% - 35rem) / 2));
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ground: #0d0d0d;
+    --ink: #f4f4f1;
+    --ink-2: #b9b9b4;
+    --ink-played: #8a8a86;
+    --hairline: #33332f;
+    --plate-ground: #1f1f1d;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scrollbar-color: var(--ink) transparent; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 400 1rem/1.6 var(--sans);
+  accent-color: var(--ink);
+  caret-color: var(--ink);
+}
+
+::selection { background: var(--ink); color: var(--ground); }
+
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+a { color: inherit; text-decoration-thickness: 1.5px; text-underline-offset: 0.2em; }
+
+button { font: inherit; color: inherit; cursor: pointer; }
+
+h1, h2, h3, p, ol, ul { margin: 0; }
+
+.icon { width: 1.25em; height: 1.25em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+.time { font-family: var(--gothic); font-variant-numeric: tabular-nums; letter-spacing: 0.01em; line-height: 1; }
+
+/* Spike tape: the only pink on the sheet, and only on what is booked. */
+.tape { display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.4rem; background: var(--tape-pink); color: var(--tape-ink); font-size: 0.75rem; font-weight: 700; line-height: 1.4; vertical-align: 0.1em; white-space: nowrap; }
+
+.plate { position: relative; background: var(--plate-ground); overflow: hidden; }
+
+/* A stand-in photo says so on its face, in ink, wherever it appears. */
+.stand-in { position: absolute; left: 0; bottom: 0; padding: 0.0625rem 0.375rem; background: var(--ground); color: var(--ink); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; line-height: 1.5; }
+.plate-thumb .stand-in { right: 0; padding: 0; font-size: 0.6875rem; text-align: center; letter-spacing: 0.04em; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.plate img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* On a phone the wrappers dissolve so the call can stay pinned for the whole scroll. */
+.stage, .prompt, .order-col { display: contents; }
+
+/* Title block */
+.title-block, .call { position: relative; isolation: isolate; }
+.title-block::before, .call::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--flood, transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.55s var(--ease-out), background-color 0.35s var(--ease-out); }
+.title-block { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 0 0.875rem; padding: calc(0.625rem + env(safe-area-inset-top)) var(--gutter) 0.5rem; border-bottom: var(--rule-hair); }
+/* Only the block transitions: a child with its own delayed transition on an inherited, animating colour restarts every frame. */
+.title-block { transition: color 0.3s var(--ease-out) 0.1s, border-color 0.3s var(--ease-out); }
+.title-block h1 { font-size: 1rem; font-weight: 800; letter-spacing: 0.02em; }
+.clock { display: flex; align-items: baseline; gap: 0.375rem; color: var(--ink-2); font-size: 0.875rem; }
+.clock-time { font-family: var(--gothic); font-size: 1.25rem; color: var(--ink); line-height: 1; }
+.notion-link { font-size: 0.875rem; color: var(--ink-2); }
+
+/* Rehearsal: the sheet inverted into a solid band, so a previewed time is never mistaken for live. */
+.rehearsal { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.375rem var(--gutter); background: var(--ink); color: var(--ground); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+.rehearsal[hidden] { display: none; }
+.rehearsal strong { margin-right: 0.5rem; font-weight: 800; letter-spacing: 0.08em; }
+.rehearsal button { padding: 0.125rem 0.625rem; background: none; border: 1.5px solid currentColor; font-weight: 700; }
+.rehearsal :focus-visible { outline-color: var(--ground); }
+
+/* The call: the one thing on the sheet set at poster scale. It takes the full measure at rest
+   and condenses to a single line once the reader is down in the day. */
+.call { position: sticky; top: 0; z-index: 5; display: grid; gap: 0.25rem; padding: 0.875rem var(--gutter) 0.75rem; background: var(--ground); border-bottom: var(--rule-heavy); transition: color 0.3s var(--ease-out) 0.1s, border-color 0.3s var(--ease-out); }
+.call-big { line-height: 0.84; }
+.call-big.is-numeral { font-family: var(--gothic); font-size: clamp(7.5rem, 43vw, 11rem); letter-spacing: 0.005em; font-variant-numeric: tabular-nums; margin-left: -0.03em; transition: font-size 0.35s var(--ease-out); }
+.call-big.is-word { font-size: clamp(4rem, 22vw, 6rem); font-weight: 900; line-height: 1.05; transition: font-size 0.35s var(--ease-out); }
+.call-line { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; min-width: 0; }
+.call-tail { font-size: 1.375rem; font-weight: 800; line-height: 1.2; }
+.call-detail { font-size: 1.375rem; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* The flood is the whole signal: no indicator light, no signage words. Yellow warns, red alerts. The band
+   floods only when missing the call would cost a booking; otherwise the sheet stays plain and simply tells the time.
+   The colour wipes in from the numeral and takes the title block with it, so chrome, title and call read as one field. */
+[data-hard="true"][data-cue="warning"] { --flood: var(--warning-yellow); --flood-ink: #0d0d0d; }
+[data-hard="true"][data-cue="alert"] { --flood: var(--alert-red); --flood-ink: #ffffff; }
+[data-hard="true"] .title-block::before, [data-hard="true"] .call::before { transform: scaleX(1); }
+/* The closing rule takes the flood colour, so no strip of ground shows under a flooded band. */
+[data-hard="true"] .title-block, [data-hard="true"] .call { color: var(--flood-ink); border-bottom-color: var(--flood); }
+[data-hard="true"] .title-block .clock, [data-hard="true"] .title-block .clock-time, [data-hard="true"] .title-block .notion-link { color: inherit; }
+[data-hard="true"] .call :focus-visible, [data-hard="true"] .title-block :focus-visible { outline-color: currentColor; }
+
+@media (max-width: 59.999rem) {
+  .is-compact .call { grid-template-columns: auto 1fr; align-items: end; gap: 0.625rem; padding-block: 0.5rem; }
+  .is-compact .call-big.is-numeral { font-size: 4rem; }
+  .is-compact .call-big.is-word { font-size: 2.25rem; }
+  .is-compact .call-line { gap: 0.5rem; padding-bottom: 0.125rem; }
+  .is-compact .call-tail { font-size: 1rem; }
+  .is-compact .call-detail { font-size: 0.9375rem; }
+}
+
+/* When the itinerary cannot load there is nothing to call and nothing to pull. */
+[data-cue="error"] .call, [data-cue="error"] .pull { display: none; }
+
+/* Tape strip: a booking further down the sheet that is starting to press. */
+.tape-strip { padding: 0.5rem var(--gutter); background: var(--tape-pink); color: var(--tape-ink); font-size: 0.9375rem; font-weight: 600; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.tape-strip-label { margin-right: 0.5rem; padding: 0 0.375rem; border: 1.5px solid var(--tape-ink); font-size: 0.75rem; font-weight: 800; }
+.tape-strip.is-late { font-weight: 800; box-shadow: inset 0 0 0 3px var(--tape-ink); }
+
+/* Now and next: rows of the same sheet as the order, time column first. */
+.plate-now { height: min(33vw, 17svh); min-height: 6.5rem; }
+.lead-row { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: 0.75rem; padding-inline: var(--gutter); }
+.lead-row.has-thumb { grid-template-columns: 3.5rem minmax(0, 1fr) 3.25rem; }
+.lead-time { display: grid; align-content: start; gap: 0.25rem; }
+.lead-time .time { font-size: 1.75rem; }
+.lead-label { color: var(--ink-2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; }
+.now .lead-row { padding-block: 0.75rem 0.875rem; }
+.now h2 { font-size: 1.375rem; font-weight: 800; line-height: 1.25; text-wrap: balance; }
+.notes { margin-top: 0.375rem; color: var(--ink-2); font-size: 0.9375rem; line-height: 1.6; max-width: 38em; }
+
+/* Long notes fold to two lines; the summary is the note itself, so a tap unfolds it in place. */
+.now .notes-fold summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; list-style: none; cursor: pointer; }
+.now .notes-fold summary::-webkit-details-marker { display: none; }
+.now .notes-fold[open] summary { display: block; }
+
+.text-link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.375rem; font-size: 0.9375rem; font-weight: 600; }
+
+/* Next cue */
+.next { padding-block: 0.75rem 1rem; border-top: var(--rule-hair); }
+.next h2 { font-size: 1.1875rem; font-weight: 800; line-height: 1.3; text-wrap: balance; }
+.next .leg-route { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.leg { display: flex; align-items: flex-start; gap: 0.375rem; margin-top: 0.375rem; color: var(--ink-2); font-size: 0.9375rem; line-height: 1.5; }
+.leg .icon { margin-top: 0.1em; color: var(--ink); }
+.leg strong { color: var(--ink); font-weight: 700; }
+.leg-route { display: block; }
+
+.slab { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; margin: 0.75rem var(--gutter) 0; padding: 0 1.125rem; background: var(--ink); color: var(--ground); font-size: 1.125rem; font-weight: 800; letter-spacing: 0.04em; text-decoration: none; transition: transform 0.12s var(--ease-out); }
+.slab .icon { width: 1.5rem; height: 1.5rem; stroke-width: 2.25; transition: transform 0.25s var(--ease-out); }
+.slab:hover .icon { transform: translateX(4px); }
+.slab:active { transform: translateY(2px); }
+
+/* The pull: one gesture deploys the whole order, the same gesture folds it back. */
+.pull { display: flex; align-items: center; gap: 0.625rem; width: 100%; min-height: 3.25rem; padding: 0 var(--gutter); background: var(--ground); border: 0; border-top: var(--rule-heavy); border-bottom: var(--rule-hair); font-size: 1rem; font-weight: 800; letter-spacing: 0.04em; text-align: left; }
+.pull-count { margin-left: auto; color: var(--ink-2); font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pull .icon { transition: transform 0.45s var(--ease-out); }
+.pull[aria-expanded="true"] .icon { transform: rotate(180deg); }
+
+.order { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s var(--ease-out); }
+.order.is-open { grid-template-rows: 1fr; }
+.order-inner { min-height: 0; overflow: hidden; padding: 0 var(--gutter); }
+.order.is-open .order-inner { padding-bottom: 1.5rem; }
+
+.tabs { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 1.25rem; border: 1.5px solid var(--ink); }
+.tabs button { display: grid; gap: 0.125rem; padding: 0.5rem 0.25rem; background: var(--ground); border: 0; border-left: 1.5px solid var(--ink); line-height: 1.2; }
+.tabs button:first-child { border-left: 0; }
+.tab-act { font-family: var(--gothic); font-size: 1.25rem; letter-spacing: 0.04em; }
+.tab-date { color: var(--ink-2); font-size: 0.75rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* Today says so in words, in full ink. A rule across the top read as a second selected state beside the solid selected tab. */
+.tabs .is-today .tab-date { color: inherit; font-weight: 800; letter-spacing: 0.08em; }
+.tabs .is-selected { background: var(--ink); color: var(--ground); }
+.tabs .is-selected .tab-date { color: inherit; }
+.tabs button:focus-visible { outline-offset: -5px; outline-color: currentColor; }
+
+
+.order-head { display: grid; grid-template-columns: 3.5rem 1fr; gap: 0.75rem; align-items: end; margin-top: 1.25rem; padding-bottom: 0.375rem; border-bottom: var(--rule-heavy); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; }
+
+.timeline { list-style: none; padding: 0; }
+.cue { border-bottom: var(--rule-hair); }
+.cue summary { display: grid; grid-template-columns: 3.5rem 1.375rem minmax(0, 1fr) 3.25rem; align-items: start; gap: 0.625rem; min-height: 4.25rem; padding: 0.625rem 0; list-style: none; cursor: pointer; }
+.cue summary::-webkit-details-marker { display: none; }
+.cue-time { display: grid; gap: 0.25rem; }
+.cue .time { font-size: 1.75rem; }
+.out { color: var(--ink-2); font-size: 0.75rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.cue-title { padding-top: 0.125rem; font-weight: 700; line-height: 1.4; }
+.code { display: grid; place-items: center; width: 1.375rem; height: 1.375rem; margin-top: 0.1875rem; border: 1.5px solid currentColor; font-size: 0.75rem; font-weight: 700; line-height: 1; }
+.plate-thumb { width: 3.25rem; height: 3.25rem; }
+
+.cue-body { display: grid; justify-items: start; gap: 0.5rem; padding: 0 0 1rem 6.125rem; }
+.cue-body .notes, .cue-body .text-link, .cue-body .leg { margin-top: 0; }
+.leave-by { display: flex; align-items: center; gap: 0.375rem; font-size: 0.9375rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.leg-link { text-decoration-thickness: 1.5px; }
+
+.backups { margin-top: 0.375rem; padding-top: 0.625rem; border-top: var(--rule-hair); justify-self: stretch; }
+.backups h3 { font-size: 0.875rem; font-weight: 800; letter-spacing: 0.06em; }
+.backups ul { list-style: none; padding: 0; margin-top: 0.375rem; display: grid; gap: 0.5rem; }
+.backups li { display: grid; gap: 0.0625rem; font-size: 0.9375rem; line-height: 1.5; }
+.backups li span { color: var(--ink-2); }
+.backups .text-link { margin-top: 0; }
+
+/* Played cues are struck, the way a stage manager crosses off what has been called. */
+.cue.is-played summary, .cue.is-played .out { color: var(--ink-played); }
+.cue.is-played .cue-title { text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.cue.is-played .plate-thumb { opacity: 0.45; }
+
+/* The current cue is the sheet inverted: ink becomes ground. */
+.cue.is-current { margin-inline: -0.75rem; padding-inline: 0.75rem; background: var(--ink); color: var(--ground); border-bottom-color: var(--ink); }
+.cue.is-current .notes, .cue.is-current .leg, .cue.is-current .out, .cue.is-current .backups li span { color: inherit; opacity: 0.82; }
+.cue.is-current .leg .icon, .cue.is-current .leg strong { color: inherit; }
+.cue.is-current .backups { border-top-color: currentColor; }
+.cue.is-current :focus-visible { outline-color: var(--ground); }
+
+/* Colophon */
+.colophon { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; padding: 1.25rem var(--gutter) calc(2rem + env(safe-area-inset-bottom)); border-top: var(--rule-heavy); color: var(--ink-2); font-size: 0.875rem; }
+.colophon button { padding: 0; background: none; border: 0; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 0.2em; }
+.colophon input { padding: 0.375rem 0.5rem; background: var(--ground); color: var(--ink); border: 1.5px solid var(--ink); border-radius: 0; font: inherit; }
+
+/* Credits page */
+.credits-page { padding: 1.25rem var(--gutter) 3rem; }
+.credits-page h1 { margin: 1rem 0 0.5rem; font-size: 1.75rem; font-weight: 800; }
+.credits-page h2 { margin: 2rem 0 0.5rem; padding-top: 0.75rem; border-top: var(--rule-heavy); font-size: 1.125rem; font-weight: 800; }
+.credits-page p { color: var(--ink-2); max-width: 40em; }
+.credits { list-style: none; padding: 0; margin-top: 0.75rem; font-size: 0.875rem; color: var(--ink-2); overflow-wrap: anywhere; }
+.credits li { padding: 0.5rem 0; border-bottom: var(--rule-hair); }
+.credits code { margin-right: 0.25rem; font: 700 0.875rem/1 var(--sans); color: var(--ink); }
+
+/* Wide screens: the call holds the left column, the order stands deployed on the right. */
+@media (min-width: 60rem) {
+  :root { --gutter: 0rem; }
+  .stage { display: grid; grid-template-columns: minmax(22rem, 28rem) minmax(26rem, 38rem); justify-content: center; gap: 0 4rem; padding-inline: 2rem; }
+  .prompt { display: block; position: sticky; top: 0; align-self: start; max-height: 100dvh; overflow-y: auto; scrollbar-width: none; padding-inline: 1rem; margin-inline: -1rem; }
+  .order-col { display: block; }
+  .title-block, .rehearsal, .call, .tape-strip { padding-inline: 1rem; margin-inline: -1rem; }
+  /* Not pinned here (the whole column is), but still positioned: the flood layer anchors to the band. */
+  .call { position: relative; top: auto; }
+  .call-big.is-numeral { font-size: 11rem; }
+  .plate-now { height: 13rem; }
+  .next .leg-route { display: block; }
+  .slab { margin-inline: 0; }
+  .pull { display: none; }
+  .order-inner { overflow: visible; }
+  .colophon { padding-inline: max(2rem, calc((100% - 70rem) / 2)); }
+  .credits-page { padding-inline: max(2rem, calc((100% - 44rem) / 2)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
