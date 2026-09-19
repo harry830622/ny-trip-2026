@@ -88,17 +88,6 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 /* On a phone the wrappers dissolve so the call can stay pinned for the whole scroll. */
 .stage, .prompt, .order-col { display: contents; }
 
-/* Title block */
-.title-block, .call { position: relative; isolation: isolate; }
-.title-block::before, .call::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--flood, transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.55s var(--ease-out), background-color 0.35s var(--ease-out); }
-.title-block { display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 0 0.875rem; padding: calc(0.625rem + env(safe-area-inset-top)) var(--gutter) 0.5rem; border-bottom: var(--rule-hair); }
-/* Only the block transitions: a child with its own delayed transition on an inherited, animating colour restarts every frame. */
-.title-block { transition: color 0.3s var(--ease-out) 0.1s, border-color 0.3s var(--ease-out); }
-.title-block h1 { font-size: 1rem; font-weight: 800; letter-spacing: 0.02em; }
-.clock { display: flex; align-items: baseline; gap: 0.375rem; color: var(--ink-2); font-size: 0.875rem; }
-.clock-time { font-family: var(--gothic); font-size: 1.25rem; color: var(--ink); line-height: 1; }
-.notion-link { font-size: 0.875rem; color: var(--ink-2); }
-
 /* Rehearsal: the sheet inverted into a solid band, so a previewed time is never mistaken for live. */
 .rehearsal { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.375rem var(--gutter); background: var(--ink); color: var(--ground); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
 .rehearsal[hidden] { display: none; }
@@ -106,38 +95,39 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 .rehearsal button { padding: 0.125rem 0.625rem; background: none; border: 1.5px solid currentColor; font-weight: 700; }
 .rehearsal :focus-visible { outline-color: var(--ground); }
 
-/* The call: the one thing on the sheet set at poster scale. It takes the full measure at rest
-   and condenses to a single line once the reader is down in the day. */
-.call { position: sticky; top: 0; z-index: 5; display: grid; gap: 0.25rem; padding: 0.875rem var(--gutter) 0.75rem; background: var(--ground); border-bottom: var(--rule-heavy); transition: color 0.3s var(--ease-out) 0.1s, border-color 0.3s var(--ease-out); }
-.call-big { line-height: 0.84; }
-.call-big.is-numeral { font-family: var(--gothic); font-size: clamp(7.5rem, 43vw, 11rem); letter-spacing: 0.005em; font-variant-numeric: tabular-nums; margin-left: -0.03em; transition: font-size 0.35s var(--ease-out); }
-.call-big.is-word { font-size: clamp(4rem, 22vw, 6rem); font-weight: 900; line-height: 1.05; transition: font-size 0.35s var(--ease-out); }
-.call-line { display: flex; align-items: baseline; justify-content: space-between; gap: 0.75rem; min-width: 0; }
-.call-tail { font-size: 1.375rem; font-weight: 800; line-height: 1.2; }
-.call-detail { font-size: 1.375rem; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* The call. While there is time it is one quiet line at the top edge: the page below belongs to the stop.
+   When a warning or alert is due the same element grows downward into the band, numeral at poster scale,
+   and for a booking it floods. It condenses again once the reader scrolls into the day. */
+.call { position: sticky; top: 0; z-index: 5; isolation: isolate; display: flex; align-items: baseline; gap: 0.5rem; padding: calc(0.5rem + env(safe-area-inset-top)) var(--call-gutter, var(--gutter)) 0.5rem; background: var(--ground); border-bottom: var(--rule-hair); font-variant-numeric: tabular-nums; transition: color 0.3s var(--ease-out) 0.1s, border-color 0.3s var(--ease-out); }
+.call::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--flood, transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.55s var(--ease-out), background-color 0.35s var(--ease-out); }
+.call-big { line-height: 1; }
+.call-big.is-numeral { font-family: var(--gothic); font-size: 1.25rem; letter-spacing: 0.01em; }
+.call-big.is-word { font-size: 0.9375rem; font-weight: 800; }
+.call-line { display: flex; flex: 1; align-items: baseline; justify-content: space-between; gap: 0.75rem; min-width: 0; }
+.call-tail { font-size: 0.9375rem; font-weight: 700; }
+.call-detail { color: var(--ink-2); font-size: 0.875rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* The flood is the whole signal: no indicator light, no signage words. Yellow warns, red alerts. The band
-   floods only when missing the call would cost a booking; otherwise the sheet stays plain and simply tells the time.
-   The colour wipes in from the numeral and takes the title block with it, so chrome, title and call read as one field. */
+/* The band: only for a warning or an alert. */
+[data-cue="warning"] .call, [data-cue="alert"] .call { display: grid; gap: 0.25rem; padding: calc(0.875rem + env(safe-area-inset-top)) var(--call-gutter, var(--gutter)) 0.75rem; border-bottom: var(--rule-heavy); }
+[data-cue="warning"] .call-big.is-numeral, [data-cue="alert"] .call-big.is-numeral { font-size: clamp(7.5rem, 43vw, 11rem); line-height: 0.84; letter-spacing: 0.005em; margin-left: -0.03em; }
+[data-cue="warning"] .call-tail, [data-cue="alert"] .call-tail { font-size: 1.375rem; font-weight: 800; line-height: 1.2; }
+
+/* A warning or alert is never colour alone: the countdown inverts into an ink chip, flooded or not. */
+[data-cue="warning"] .call-detail, [data-cue="alert"] .call-detail { padding: 0 0.5rem; background: var(--flood-ink, var(--ink)); color: var(--flood, var(--ground)); font-size: 1.375rem; font-weight: 800; }
+
+/* It floods only when the very next stop is booked. The colour wipes in from the numeral. */
 [data-hard="true"][data-cue="warning"] { --flood: var(--warning-yellow); --flood-ink: #0d0d0d; }
 [data-hard="true"][data-cue="alert"] { --flood: var(--alert-red); --flood-ink: #ffffff; }
-[data-hard="true"] .title-block::before, [data-hard="true"] .call::before { transform: scaleX(1); }
-
-/* A warning or alert is never colour alone: the countdown inverts into an ink chip, flooded or not,
-   so the state reads in sunlight, through sunglasses and without colour vision. */
-[data-cue="warning"] .call-detail, [data-cue="alert"] .call-detail { padding: 0 0.5rem; background: var(--flood-ink, var(--ink)); color: var(--flood, var(--ground)); }
-/* The closing rule takes the flood colour, so no strip of ground shows under a flooded band. */
-[data-hard="true"] .title-block, [data-hard="true"] .call { color: var(--flood-ink); border-bottom-color: var(--flood); }
-[data-hard="true"] .title-block .clock, [data-hard="true"] .title-block .clock-time, [data-hard="true"] .title-block .notion-link { color: inherit; }
-[data-hard="true"] .call :focus-visible, [data-hard="true"] .title-block :focus-visible { outline-color: currentColor; }
+[data-hard="true"] .call::before { transform: scaleX(1); }
+[data-hard="true"] .call { color: var(--flood-ink); border-bottom-color: var(--flood); }
+[data-hard="true"] .call :focus-visible { outline-color: currentColor; }
 
 @media (max-width: 59.999rem) {
-  .is-compact .call { grid-template-columns: auto 1fr; align-items: end; gap: 0.625rem; padding-block: 0.5rem; }
-  .is-compact .call-big.is-numeral { font-size: 4rem; }
-  .is-compact .call-big.is-word { font-size: 2.25rem; }
-  .is-compact .call-line { gap: 0.5rem; padding-bottom: 0.125rem; }
-  .is-compact .call-tail { font-size: 1rem; }
-  .is-compact .call-detail { font-size: 0.9375rem; }
+  .is-compact[data-cue="warning"] .call, .is-compact[data-cue="alert"] .call { grid-template-columns: auto 1fr; align-items: end; gap: 0.625rem; padding-block: calc(0.5rem + env(safe-area-inset-top)) 0.5rem; }
+  .is-compact[data-cue="warning"] .call-big.is-numeral, .is-compact[data-cue="alert"] .call-big.is-numeral { font-size: 4rem; }
+  .is-compact[data-cue="warning"] .call-line, .is-compact[data-cue="alert"] .call-line { gap: 0.5rem; padding-bottom: 0.125rem; }
+  .is-compact[data-cue="warning"] .call-tail, .is-compact[data-cue="alert"] .call-tail { font-size: 1rem; }
+  .is-compact[data-cue="warning"] .call-detail, .is-compact[data-cue="alert"] .call-detail { font-size: 0.9375rem; }
 }
 
 /* When the itinerary cannot load there is nothing to call and nothing to pull. */
@@ -148,35 +138,37 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 .tape-strip-label { margin-right: 0.5rem; padding: 0 0.375rem; border: 1.5px solid var(--tape-ink); font-size: 0.75rem; font-weight: 800; }
 .tape-strip.is-late { font-weight: 800; box-shadow: inset 0 0 0 3px var(--tape-ink); }
 
-/* Now and next: rows of the same sheet as the order, time column first. */
-.plate-now { height: min(33vw, 17svh); min-height: 6.5rem; }
-.lead-row { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: 0.75rem; padding-inline: var(--gutter); }
-.lead-row.has-thumb { grid-template-columns: 3.5rem minmax(0, 1fr) 3.25rem; }
-.lead-time { display: grid; align-content: start; gap: 0.25rem; }
-.lead-time .time { font-size: 1.75rem; }
-.lead-label { color: var(--ink-2); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; }
-.now .lead-row { padding-block: 0.75rem 0.875rem; }
-.now h2 { font-size: 1.375rem; font-weight: 800; line-height: 1.25; text-wrap: balance; }
-.notes { margin-top: 0.375rem; color: var(--ink-2); font-size: 0.9375rem; line-height: 1.6; max-width: 38em; }
+/* The page: the current stop in full. It carries no times; the call does. */
+.plate-now { aspect-ratio: 3 / 2; max-height: 36svh; width: 100%; }
+.page-body { padding: 1rem var(--gutter) 1.125rem; }
+.now h2 { font-size: 1.75rem; font-weight: 800; line-height: 1.2; text-wrap: balance; }
+.now h2 .tape { vertical-align: 0.3em; }
+.notes { margin-top: 0.5rem; color: var(--ink-2); font-size: 1rem; line-height: 1.7; max-width: 38em; }
+.text-link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.625rem; font-size: 0.9375rem; font-weight: 600; }
 
-/* Long notes fold to two lines; the summary is the note itself, so a tap unfolds it in place. */
-.now .notes-fold summary { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; list-style: none; cursor: pointer; }
-.now .notes-fold summary::-webkit-details-marker { display: none; }
-.now .notes-fold[open] summary { display: block; }
+/* A list on the page folds to one ruled line, the way the day does under the pull. */
+.page-list { border-top: var(--rule-hair); }
+.page-list summary { display: flex; align-items: center; gap: 0.625rem; min-height: 3rem; padding: 0 var(--gutter); font-size: 0.9375rem; font-weight: 800; letter-spacing: 0.02em; list-style: none; cursor: pointer; }
+.page-list summary::-webkit-details-marker { display: none; }
+.page-list summary .icon { transition: transform 0.35s var(--ease-out); }
+.page-list[open] summary .icon { transform: rotate(180deg); }
+.page-list .backups-items { list-style: none; margin: 0; padding: 0 var(--gutter) 1rem; display: grid; gap: 0.625rem; }
+.page-list li { display: grid; gap: 0.0625rem; font-size: 0.9375rem; line-height: 1.5; }
+.page-list li span { color: var(--ink-2); }
+.page-list .text-link { margin-top: 0; }
 
-.text-link { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: 0.375rem; font-size: 0.9375rem; font-weight: 600; }
-
-/* Next cue */
-.next { padding-block: 0.75rem 1rem; border-top: var(--rule-hair); }
-.next h2 { font-size: 1.1875rem; font-weight: 800; line-height: 1.3; text-wrap: balance; }
-.arrive-note { margin-top: 0.125rem; font-size: 0.9375rem; font-weight: 700; font-variant-numeric: tabular-nums; }
-.next .leg-route { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+/* Next stop: one row, named in a sentence, with the way there and the one button. */
+.next { padding-block: 1rem 1.125rem; border-top: var(--rule-heavy); }
+.next-row { display: grid; grid-template-columns: minmax(0, 1fr) 3.25rem; gap: 0.875rem; align-items: start; padding-inline: var(--gutter); }
+.next h2 { font-size: 1.1875rem; font-weight: 800; line-height: 1.3; }
+.next-label { margin-right: 0.5rem; color: var(--ink-2); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.06em; }
+.plate-thumb { width: 3.25rem; height: 3.25rem; }
 .leg { display: flex; align-items: flex-start; gap: 0.375rem; margin-top: 0.375rem; color: var(--ink-2); font-size: 0.9375rem; line-height: 1.5; }
 .leg .icon { margin-top: 0.1em; color: var(--ink); }
 .leg strong { color: var(--ink); font-weight: 700; }
 .leg-route { display: block; }
 
-.slab { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; margin: 0.75rem var(--gutter) 0; padding: 0 1.125rem; background: var(--ink); color: var(--ground); font-size: 1.125rem; font-weight: 800; letter-spacing: 0.04em; text-decoration: none; transition: transform 0.12s var(--ease-out); }
+.slab { display: flex; align-items: center; justify-content: space-between; min-height: 3.5rem; margin: 0.875rem var(--gutter) 0; padding: 0 1.125rem; background: var(--ink); color: var(--ground); font-size: 1.125rem; font-weight: 800; letter-spacing: 0.04em; text-decoration: none; transition: transform 0.12s var(--ease-out); }
 .slab .icon { width: 1.5rem; height: 1.5rem; stroke-width: 2.25; transition: transform 0.25s var(--ease-out); }
 .slab:hover .icon { transform: translateX(4px); }
 .slab:active { transform: translateY(2px); }
@@ -257,20 +249,19 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 
 /* Wide screens: the call holds the left column, the order stands deployed on the right. */
 @media (min-width: 60rem) {
-  :root { --gutter: 0rem; }
-  .stage { display: grid; grid-template-columns: minmax(22rem, 28rem) minmax(26rem, 38rem); justify-content: center; gap: 0 4rem; padding-inline: 2rem; }
-  .prompt { display: block; position: sticky; top: 0; align-self: start; max-height: 100dvh; overflow-y: auto; scrollbar-width: none; padding-inline: 1rem; margin-inline: -1rem; }
+  /* The call spans the top of the window; beneath it the page holds the left column and the day stands open on the right. */
+  :root { --gutter: 0rem; --frame: max(2rem, calc((100% - 70rem) / 2)); }
+  .call { --call-gutter: var(--frame); }
+  .rehearsal { padding-inline: var(--frame); }
+  .stage { display: grid; grid-template-columns: minmax(22rem, 28rem) minmax(26rem, 38rem); justify-content: center; gap: 0 4rem; padding: 1.5rem 2rem 0; }
+  .prompt { display: block; position: sticky; top: 3.5rem; align-self: start; max-height: calc(100dvh - 3.5rem); overflow-y: auto; scrollbar-width: none; }
   .order-col { display: block; }
-  .title-block, .rehearsal, .call, .tape-strip { padding-inline: 1rem; margin-inline: -1rem; }
-  /* Not pinned here (the whole column is), but still positioned: the flood layer anchors to the band. */
-  .call { position: relative; top: auto; }
-  .call-big.is-numeral { font-size: 11rem; }
-  .plate-now { height: 13rem; }
-  .next .leg-route { display: block; }
-  .slab { margin-inline: 0; }
+  .tape-strip { padding-inline: 1rem; }
+  .plate-now { max-height: 18rem; }
   .pull { display: none; }
   .order-inner { overflow: visible; }
-  .colophon { padding-inline: max(2rem, calc((100% - 70rem) / 2)); }
+  .order-inner .tabs { margin-top: 0; }
+  .colophon { padding-inline: var(--frame); }
   .credits-page { padding-inline: max(2rem, calc((100% - 44rem) / 2)); }
 }
 

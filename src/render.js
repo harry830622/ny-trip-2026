@@ -61,13 +61,6 @@ function dateLabel(date) {
   return `${String(month).padStart(2, "0")}/${String(day).padStart(2, "0")}（${weekday}）`;
 }
 
-export function renderHeader(el, itinerary, now) {
-  setHtml(el, `
-    <h1>${escapeHtml(itinerary.trip.title)}</h1>
-    <p class="clock"><span>${dateLabel(now.date)}</span><span class="clock-time">${formatMinutes(now.minutes)}</span><span>紐約</span></p>
-    ${link(itinerary.trip.notionUrl, "Notion", "notion-link")}`);
-}
-
 export function renderPreviewBanner(el, now, isPreview) {
   el.hidden = !isPreview;
   setHtml(el, isPreview
@@ -98,26 +91,43 @@ function tapeStrip(state) {
   return `<p class="tape-strip ${deadline.severity === "late" ? "is-late" : ""}"><span class="tape-strip-label">已訂</span>${escapeHtml(plainText(deadlineLine(deadline)))}</p>`;
 }
 
+export function renderStrip(el, state) {
+  setHtml(el, tapeStrip(state));
+}
+
 // How long comes first because that is what gets read; the route is the supporting line.
 function legInner(leg) {
   return `${icon(leg.mode)}<span><strong>${escapeHtml(legLine(leg))}</strong>${leg.label ? `<span class="leg-route">${escapeHtml(leg.label)}</span>` : ""}</span>`;
 }
 
-// Now and next are rows of the same sheet as the order below: time column first, cue beside it.
+// A list on the page folds to one line; on a shopping street it can run to fourteen items.
+function pageLists(stop) {
+  return (stop.lists ?? [])
+    .map((list) => {
+      const items = list.items
+        .map((item) => {
+          const name = item.mapUrl ? link(item.mapUrl, escapeHtml(item.title), "text-link") : escapeHtml(item.title);
+          return `<li><strong>${name}</strong>${item.note ? `<span>${escapeHtml(item.note)}</span>` : ""}</li>`;
+        })
+        .join("");
+      return `<details class="page-list"><summary><span>${escapeHtml(plainText(list.label))}</span><span class="pull-count">${list.items.length}</span>${icon("chevron")}</summary><ul class="backups-items">${items}</ul></details>`;
+    })
+    .join("");
+}
+
+// The page is the current stop: what it is and what to do there. It carries no times; the call does.
 function nowBlock(state, standIns) {
   const { current } = state;
   if (!current) return "";
   return `
     <section class="now" aria-labelledby="now-title">
       ${plate(current, "plate-now", standIns)}
-      <div class="lead-row">
-        <p class="lead-time"><span class="time">${current.start}</span><span class="lead-label">現在</span></p>
-        <div class="lead-body">
-          <h2 id="now-title">${title(current)}${bookedTag(current)}</h2>
-          ${current.notes ? `<details class="notes-fold"><summary class="notes">${escapeHtml(current.notes)}</summary></details>` : ""}
-          ${current.mapUrl ? link(current.mapUrl, `${icon("pin")}地圖`, "text-link") : ""}
-        </div>
+      <div class="page-body">
+        <h2 id="now-title">${title(current)}${bookedTag(current)}</h2>
+        ${current.notes ? `<p class="notes">${escapeHtml(current.notes)}</p>` : ""}
+        ${current.mapUrl ? link(current.mapUrl, `${icon("pin")}地圖`, "text-link") : ""}
       </div>
+      ${pageLists(current)}
     </section>`;
 }
 
@@ -129,11 +139,9 @@ function nextBlock(state, standIns) {
   const navLabel = leg?.navUrl ? "導航過去" : "看地圖";
   return `
     <section class="next" aria-labelledby="next-title">
-      <div class="lead-row has-thumb">
-        <p class="lead-time"><span class="time">${next.arriveBy ?? next.start}</span><span class="lead-label">${state.nextIsTomorrow ? "明天" : "下一站"}</span>${next.arriveBy ? '<span class="lead-label">前到</span>' : ""}</p>
-        <div class="lead-body">
-          <h2 id="next-title">${title(next)}${bookedTag(next)}</h2>
-          ${next.arriveBy ? `<p class="arrive-note">訂位 ${next.start}，要提早到</p>` : ""}
+      <div class="next-row">
+        <div class="next-body">
+          <h2 id="next-title"><span class="next-label">${state.nextIsTomorrow ? "明天" : "下一站"}</span>${title(next)}${bookedTag(next)}</h2>
           ${leg ? `<p class="leg">${legInner(leg)}</p>` : ""}
         </div>
         ${plate(next, "plate-thumb", standIns)}
@@ -143,7 +151,7 @@ function nextBlock(state, standIns) {
 }
 
 export function renderCards(el, state, standIns) {
-  setHtml(el, tapeStrip(state) + nowBlock(state, standIns) + nextBlock(state, standIns));
+  setHtml(el, nowBlock(state, standIns) + nextBlock(state, standIns));
 }
 
 export function renderPull(el, day, isOpen) {

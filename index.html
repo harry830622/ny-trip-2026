@@ -38,11 +38,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body data-cue="idle">
+  <h1 class="visually-hidden">2026 紐約行</h1>
+  <div id="preview-banner" class="rehearsal" hidden></div>
+  <section id="call" class="call" aria-label="離開提醒"></section>
   <main class="stage">
     <div class="prompt">
-      <header id="header" class="title-block"></header>
-      <div id="preview-banner" class="rehearsal" hidden></div>
-      <section id="call" class="call" aria-live="polite" aria-label="現在的提醒"></section>
+      <div id="strip"></div>
       <div id="cards"></div>
       <button type="button" id="pull" class="pull" aria-expanded="false" aria-controls="order"></button>
     </div>
@@ -57,6 +58,7 @@
     </div>
   </main>
   <footer class="colophon">
+    <a href="https://app.notion.com/p/3dabc029903e81b485cfee217af07c64" target="_blank" rel="noopener">Notion 原稿</a>
     <a href="credits.html">照片來源</a>
     <button type="button" id="preview-toggle">排練其他時間</button>
     <input type="datetime-local" id="preview-input" aria-label="排練時間（紐約）" min="2026-10-02T00:00" max="2026-10-05T23:59" hidden>
