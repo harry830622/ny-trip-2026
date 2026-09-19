@@ -64,20 +64,26 @@ function dateLabel(date) {
 export function renderPreviewBanner(el, now, isPreview) {
   el.hidden = !isPreview;
   setHtml(el, isPreview
-    ? `<p><strong>排練</strong>${dateLabel(now.date)} ${formatMinutes(now.minutes)}</p><button type="button" id="preview-exit">回到現在</button>`
+    ? `<p><strong>預覽</strong>${dateLabel(now.date)} ${formatMinutes(now.minutes)}</p><button type="button" id="preview-exit">回到現在</button>`
     : "");
 }
 
+// The call keeps one set of elements for its whole life and only patches their text. Replacing them would
+// make every change of state appear finished; keeping them lets the quiet line grow into the band.
 // Returns the call so the caller can flood the band and the browser chrome to match.
 export function renderCall(el, state) {
   const sheet = callSheet(state);
-  const isNumeral = /^[\d:]+$/.test(sheet.big);
-  setHtml(el, `
-    <p class="call-big ${isNumeral ? "is-numeral" : "is-word"}">${escapeHtml(sheet.big)}</p>
-    <div class="call-line">
-      <span class="call-tail">${escapeHtml(sheet.tail)}</span>
-      <span class="call-detail">${escapeHtml(plainText(sheet.detail))}</span>
-    </div>`);
+  if (!el.firstElementChild) {
+    el.innerHTML = '<div class="call-inner"><p class="call-big"></p><div class="call-line"><span class="call-tail"></span><span class="call-detail"></span></div><div class="call-strip"></div></div>';
+  }
+  const big = el.querySelector(".call-big");
+  big.textContent = sheet.big;
+  big.classList.toggle("is-numeral", /^[\d:]+$/.test(sheet.big));
+  big.classList.toggle("is-word", !/^[\d:]+$/.test(sheet.big));
+  el.querySelector(".call-tail").textContent = sheet.tail;
+  el.querySelector(".call-detail").textContent = plainText(sheet.detail);
+  // A booking further down the day rides with the call, pinned, so it never shifts the page either.
+  setHtml(el.querySelector(".call-strip"), tapeStrip(state));
   return sheet;
 }
 
@@ -89,10 +95,6 @@ function tapeStrip(state) {
   // When the booked stop is simply what comes next, the call and the next cue already say it.
   if (!nextIsTomorrow && next && next.id === deadline.stop.id) return "";
   return `<p class="tape-strip ${deadline.severity === "late" ? "is-late" : ""}"><span class="tape-strip-label">已訂</span>${escapeHtml(plainText(deadlineLine(deadline)))}</p>`;
-}
-
-export function renderStrip(el, state) {
-  setHtml(el, tapeStrip(state));
 }
 
 // How long comes first because that is what gets read; the route is the supporting line.

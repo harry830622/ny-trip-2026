@@ -1,6 +1,6 @@
 import { toNewYork, parseAt } from "./time.js";
 import { computeState } from "./schedule.js";
-import { renderPreviewBanner, renderCall, renderStrip, renderCards, renderPull, renderTabs, renderTimeline, renderError } from "./render.js";
+import { renderPreviewBanner, renderCall, renderCards, renderPull, renderTabs, renderTimeline, renderError } from "./render.js";
 
 const DATA_URL = "data/itinerary.json";
 const NOTION_URL = "https://app.notion.com/p/3dabc029903e81b485cfee217af07c64";
@@ -18,7 +18,6 @@ const GROUND = { light: "#ffffff", dark: "#0d0d0d" };
 const els = {
   banner: document.getElementById("preview-banner"),
   call: document.getElementById("call"),
-  strip: document.getElementById("strip"),
   cards: document.getElementById("cards"),
   pull: document.getElementById("pull"),
   order: document.getElementById("order"),
@@ -84,7 +83,6 @@ function render() {
   const call = renderCall(els.call, state);
   applyCall(call);
   announce(call);
-  renderStrip(els.strip, state);
   renderCards(els.cards, state, standIns);
   applyOrderState(day);
 

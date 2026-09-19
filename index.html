@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#ffffff">
@@ -44,7 +44,6 @@
   <p id="announce" class="visually-hidden" aria-live="polite"></p>
   <main class="stage">
     <div class="prompt">
-      <div id="strip"></div>
       <div id="cards"></div>
       <button type="button" id="pull" class="pull" aria-expanded="false" aria-controls="order"></button>
     </div>
@@ -61,8 +60,8 @@
   <footer class="colophon">
     <a href="https://app.notion.com/p/3dabc029903e81b485cfee217af07c64" target="_blank" rel="noopener">Notion 原稿</a>
     <a href="credits.html">照片來源</a>
-    <button type="button" id="preview-toggle">排練其他時間</button>
-    <input type="datetime-local" id="preview-input" aria-label="排練時間（紐約）" min="2026-10-02T00:00" max="2026-10-05T23:59" hidden>
+    <button type="button" id="preview-toggle">預覽其他時間</button>
+    <input type="datetime-local" id="preview-input" aria-label="預覽時間（紐約）" min="2026-10-02T00:00" max="2026-10-05T23:59" hidden>
   </footer>
   <script type="module" src="src/main.js"></script>
 </body>
