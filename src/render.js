@@ -226,5 +226,5 @@ export function renderTimeline(el, day, { dayPosition, currentId, standIns }) {
 }
 
 export function renderError(el, notionUrl) {
-  el.innerHTML = `<section class="now"><div class="lead-row"><div class="lead-body"><h2>行程載入失敗</h2><p class="notes">請確認網路後重新整理，或直接看 ${link(notionUrl, "Notion 原稿", "text-link")}。</p></div></div></section>`;
+  el.innerHTML = `<section class="now"><div class="page-body"><h2>行程載入失敗</h2><p class="notes">請確認網路後重新整理，或直接看 ${link(notionUrl, "Notion 原稿", "text-link")}。</p></div></section>`;
 }

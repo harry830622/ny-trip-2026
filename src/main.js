@@ -26,6 +26,7 @@ const els = {
   timeline: document.getElementById("timeline"),
   previewToggle: document.getElementById("preview-toggle"),
   previewInput: document.getElementById("preview-input"),
+  announce: document.getElementById("announce"),
   themeColor: document.querySelector('meta[name="theme-color"]'),
 };
 
@@ -38,6 +39,7 @@ let standIns = new Set();
 let selectedDay = null; // null follows today
 let orderOpen = false;
 let timelineKey = null;
+let announcedCue = null;
 
 function readClock() {
   const preview = parseAt(location.search);
@@ -49,6 +51,13 @@ function dayPositionOf(state, dayIndex) {
   if (state.phase === "after") return "past";
   if (dayIndex < state.dayIndex) return "past";
   return dayIndex === state.dayIndex ? "today" : "future";
+}
+
+// A screen reader hears the call only when it becomes a warning or an alert, never every minute as the countdown ticks.
+function announce({ cue, big, tail, detail }) {
+  if (cue === announcedCue) return;
+  announcedCue = cue;
+  els.announce.textContent = cue === "warning" || cue === "alert" ? `${big} ${tail}，${detail}` : "";
 }
 
 function applyCall({ cue, hard }) {
@@ -72,7 +81,9 @@ function render() {
   const day = itinerary.days[shownDay];
 
   renderPreviewBanner(els.banner, now, isPreview);
-  applyCall(renderCall(els.call, state));
+  const call = renderCall(els.call, state);
+  applyCall(call);
+  announce(call);
   renderStrip(els.strip, state);
   renderCards(els.cards, state, standIns);
   applyOrderState(day);

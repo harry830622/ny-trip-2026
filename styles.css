@@ -207,7 +207,6 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 .out { color: var(--ink-2); font-size: 0.75rem; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .cue-title { padding-top: 0.125rem; font-weight: 700; line-height: 1.4; }
 .code { display: grid; place-items: center; width: 1.375rem; height: 1.375rem; margin-top: 0.1875rem; border: 1.5px solid currentColor; font-size: 0.75rem; font-weight: 700; line-height: 1; }
-.plate-thumb { width: 3.25rem; height: 3.25rem; }
 
 .cue-body { display: grid; justify-items: start; gap: 0.5rem; padding: 0 0 1rem 6.125rem; }
 .cue-body .notes, .cue-body .text-link, .cue-body .leg { margin-top: 0; }
@@ -255,6 +254,8 @@ h1, h2, h3, p, ol, ul { margin: 0; }
   .rehearsal { padding-inline: var(--frame); }
   .stage { display: grid; grid-template-columns: minmax(22rem, 28rem) minmax(26rem, 38rem); justify-content: center; gap: 0 4rem; padding: 1.5rem 2rem 0; }
   .prompt { display: block; position: sticky; top: 3.5rem; align-self: start; max-height: calc(100dvh - 3.5rem); overflow-y: auto; scrollbar-width: none; }
+  /* The band is several times taller than the quiet line; while it shows, the page column scrolls with the page instead of sliding under it. */
+  [data-cue="warning"] .prompt, [data-cue="alert"] .prompt { position: static; max-height: none; }
   .order-col { display: block; }
   .tape-strip { padding-inline: 1rem; }
   .plate-now { max-height: 18rem; }
