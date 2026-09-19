@@ -161,15 +161,19 @@ export function renderTabs(el, days, shownDay, todayIndex) {
     .join("");
 }
 
-function backupsBlock(stop) {
-  if (!stop.backups?.length) return "";
-  const items = stop.backups
-    .map((backup) => {
-      const name = backup.mapUrl ? link(backup.mapUrl, escapeHtml(backup.title), "text-link") : escapeHtml(backup.title);
-      return `<li><strong>${name}</strong>${backup.note ? `<span>${escapeHtml(backup.note)}</span>` : ""}</li>`;
+// A stop can carry several lists: backups for a long queue, shops along the way, Jellycat stockists.
+function listsBlock(stop) {
+  return (stop.lists ?? [])
+    .map((list) => {
+      const items = list.items
+        .map((item) => {
+          const name = item.mapUrl ? link(item.mapUrl, escapeHtml(item.title), "text-link") : escapeHtml(item.title);
+          return `<li><strong>${name}</strong>${item.note ? `<span>${escapeHtml(item.note)}</span>` : ""}</li>`;
+        })
+        .join("");
+      return `<div class="backups"><h3>${escapeHtml(plainText(list.label))}</h3><ul>${items}</ul></div>`;
     })
     .join("");
-  return `<div class="backups"><h3>${escapeHtml(plainText(stop.backupsLabel ?? "備案"))}</h3><ul>${items}</ul></div>`;
 }
 
 function legBlock(leg) {
@@ -205,7 +209,7 @@ export function renderTimeline(el, day, { dayPosition, currentId, standIns }) {
               ${stop.leaveBy ? `<p class="leave-by">${icon("clock")}<span>${stop.leaveBy} 前離開</span></p>` : ""}
               ${stop.mapUrl ? link(stop.mapUrl, `${icon("pin")}地圖`, "text-link") : ""}
               ${legBlock(stop.leg)}
-              ${backupsBlock(stop)}
+              ${listsBlock(stop)}
             </div>
           </details>
         </li>`;

@@ -58,8 +58,8 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Newark+Liberty+International+Airport",
           "leg": {
             "mode": "transit",
-            "minutes": 42,
-            "label": "AirTrain + NJ Transit 到 Penn Station 再走 5 分（約 US$16）",
+            "minutes": 45,
+            "label": "AirTrain + NJ Transit 到 Penn Station 再走 5 分（43–47 分，約 US$16；Google 先跳出的是 55 分的機場巴士，選有 AirTrain Newark + NEC 的那條）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Newark+Liberty+International+Airport&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit"
           }
         },
@@ -74,10 +74,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
-            "minutes": 25,
+            "minutes": 22,
             "label": "Penn Station 搭 2/3 線到 Wall St",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=Conwell+Coffee+Hall+6+Hanover+St+New+York&travelmode=transit",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=Conwell+Coffee+Hall+6+Hanover+St+New+York&travelmode=transit"
           }
         },
         {
@@ -90,22 +89,25 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Conwell+Coffee+Hall+6+Hanover+St+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 25,
+            "minutes": 26,
             "label": "搭地鐵去 Little Island",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Conwell+Coffee+Hall+6+Hanover+St+New+York&destination=Little+Island+New+York&travelmode=transit",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Conwell+Coffee+Hall+6+Hanover+St+New+York&destination=Little+Island+New+York&travelmode=transit"
           },
-          "backupsLabel": "備案（Conwell 排太長的話）",
-          "backups": [
+          "lists": [
             {
-              "title": "Leo's Bagels",
-              "note": "3 Hanover Square，隔壁，在地人的日常 bagel",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Leo%27s+Bagels+3+Hanover+Square+New+York"
-            },
-            {
-              "title": "Black Fox Coffee",
-              "note": "70 Pine St，走 3 分，咖啡 + 輕食",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Black+Fox+Coffee+70+Pine+St+New+York"
+              "label": "備案（Conwell 排太長的話）",
+              "items": [
+                {
+                  "title": "Leo's Bagels",
+                  "note": "3 Hanover Square，隔壁，在地人的日常 bagel",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Leo%27s+Bagels+3+Hanover+Square+New+York"
+                },
+                {
+                  "title": "Black Fox Coffee",
+                  "note": "70 Pine St，走 3 分，咖啡 + 輕食",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Black+Fox+Coffee+70+Pine+St+New+York"
+                }
+              ]
             }
           ]
         },
@@ -119,10 +121,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Little+Island+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 12,
+            "minutes": 19,
             "label": "走去 L'Industrie",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Little+Island+New+York&destination=L%27Industrie+Pizzeria+104+Christopher+St+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Little+Island+New+York&destination=L%27Industrie+Pizzeria+104+Christopher+St+New+York&travelmode=walking"
           }
         },
         {
@@ -145,8 +146,7 @@
             "mode": "walk",
             "minutes": 15,
             "label": "走去 Chelsea Market",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=L%27Industrie+Pizzeria+104+Christopher+St+New+York&destination=Chelsea+Market+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=L%27Industrie+Pizzeria+104+Christopher+St+New+York&destination=Chelsea+Market+New+York&travelmode=walking"
           }
         },
         {
@@ -192,10 +192,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Vessel+Hudson+Yards+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 15,
+            "minutes": 14,
             "label": "搭 7 號線去 Summit（34 St-Hudson Yards 直達 Grand Central，含走路）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Vessel+Hudson+Yards+New+York&destination=Summit+One+Vanderbilt+New+York&travelmode=transit",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Vessel+Hudson+Yards+New+York&destination=Summit+One+Vanderbilt+New+York&travelmode=transit"
           }
         },
         {
@@ -210,10 +209,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Summit+One+Vanderbilt+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 25,
-            "label": "回飯店（7 號線到 Times Sq 再走 10 分，或直接走 25 分）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Summit+One+Vanderbilt+New+York&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit",
-            "untested": true
+            "minutes": 20,
+            "label": "回飯店（大眾運輸 14–20 分，或直接走 24 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Summit+One+Vanderbilt+New+York&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit"
           }
         },
         {
@@ -227,10 +225,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
-            "minutes": 20,
-            "label": "Penn Station 搭 A/C/E 到 14th St 再走 8 分",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=Noz+17+458+W+17th+St+New+York&travelmode=transit",
-            "untested": true
+            "minutes": 15,
+            "label": "搭 M11 公車或地鐵",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=Noz+17+458+W+17th+St+New+York&travelmode=transit"
           }
         },
         {
@@ -246,8 +243,8 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Noz+17+458+W+17th+St+New+York",
           "leg": {
             "mode": "drive",
-            "minutes": 10,
-            "label": "Uber 回飯店（地鐵約 20 分）",
+            "minutes": 8,
+            "label": "深夜叫 Uber 回飯店（地鐵 15 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Noz+17+458+W+17th+St+New+York&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit"
           }
         },
@@ -306,10 +303,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Metropolitan+Museum+of+Art+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 15,
-            "label": "去 Chick Chick（M86 公車橫跨公園，走路約 25 分）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=The+Metropolitan+Museum+of+Art+New+York&destination=Chick+Chick+618+Amsterdam+Ave+New+York&travelmode=transit",
-            "untested": true
+            "minutes": 18,
+            "label": "去 Chick Chick（M86 公車橫跨公園，走路 27 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=The+Metropolitan+Museum+of+Art+New+York&destination=Chick+Chick+618+Amsterdam+Ave+New+York&travelmode=transit"
           }
         },
         {
@@ -322,16 +318,20 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chick+Chick+618+Amsterdam+Ave+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 25,
-            "label": "走去 Bethesda Fountain（從 86th & CPW 進公園往南走）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Chick+Chick+618+Amsterdam+Ave+New+York&destination=Bethesda+Fountain+Central+Park&travelmode=walking",
-            "untested": true
+            "minutes": 31,
+            "label": "走去 Bethesda Terrace（從 86th & CPW 進公園往南走）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Chick+Chick+618+Amsterdam+Ave+New+York&destination=Bethesda+Terrace+Central+Park+New+York&travelmode=walking"
           },
-          "backups": [
+          "lists": [
             {
-              "title": "The Halal Guys 本店餐車",
-              "note": "53rd & 6th，點 sandwich 不要飯。如果不想繞去上西城就照原路線 Met → Central Park → 5th Ave，13:45 在 53rd 吃",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Halal+Guys+W+53rd+St+%26+6th+Ave+New+York"
+              "label": "備案",
+              "items": [
+                {
+                  "title": "The Halal Guys 本店餐車",
+                  "note": "53rd & 6th，點 sandwich 不要飯。如果不想繞去上西城就照原路線 Met → Central Park → 5th Ave，13:45 在 53rd 吃",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Halal+Guys+W+53rd+St+%26+6th+Ave+New+York"
+                }
+              ]
             }
           ]
         },
@@ -342,12 +342,12 @@
           "kind": "sight",
           "photo": "photos/central-park.jpg",
           "notes": "Bethesda Fountain → Bow Bridge → 往南走出公園。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bethesda+Fountain+Central+Park",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bethesda+Terrace+Central+Park+New+York",
           "leg": {
             "mode": "walk",
             "minutes": 16,
             "label": "走到 5th Ave & 59th",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Bethesda+Fountain+Central+Park&destination=5th+Ave+and+59th+St+New+York&travelmode=walking"
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Bethesda+Terrace+Central+Park+New+York&destination=5th+Ave+and+59th+St+New+York&travelmode=walking"
           }
         },
         {
@@ -364,27 +364,76 @@
             "label": "走去 FAO Schwarz",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=5th+Ave+and+59th+St+New+York&destination=FAO+Schwarz+Rockefeller+Center&travelmode=walking"
           },
-          "backupsLabel": "🧸 Jellycat 沿線",
-          "backups": [
+          "lists": [
             {
-              "title": "Nordstrom NYC 旗艦店",
-              "note": "225 W 57th & Broadway，兒童部；Central Park 改從 Columbus Circle 出來就在對面",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Nordstrom+NYC+225+W+57th+St"
+              "label": "5th Ave 順路點（從 59th 往南）",
+              "items": [
+                {
+                  "title": "Apple Fifth Avenue",
+                  "note": "59th，玻璃方塊本店，地下那間，進去看一眼就好"
+                },
+                {
+                  "title": "Bergdorf Goodman",
+                  "note": "58th，紐約最老牌的高級百貨"
+                },
+                {
+                  "title": "Tiffany & Co. 旗艦店",
+                  "note": "57th，2023 翻新完，頂樓有 Blue Box Cafe"
+                },
+                {
+                  "title": "Louis Vuitton / Dior / Gucci",
+                  "note": "57th–56th 一排，精品區核心"
+                },
+                {
+                  "title": "Uniqlo 全球旗艦店",
+                  "note": "53rd，三層樓，限定聯名這間最齊"
+                },
+                {
+                  "title": "Nike House of Innovation",
+                  "note": "52nd，六層樓旗艦"
+                },
+                {
+                  "title": "MoMA Design Store 53rd",
+                  "note": "53rd 靠 6th，設計小物 + 零星 Jellycat"
+                },
+                {
+                  "title": "Saks Fifth Avenue",
+                  "note": "50th，見 Jellycat 沿線"
+                },
+                {
+                  "title": "Nintendo NY",
+                  "note": "10 Rockefeller Plaza，48th，全美唯一任天堂直營店，FAO Schwarz 隔壁，週六要排"
+                },
+                {
+                  "title": "LEGO Store Rockefeller Center",
+                  "note": "也在 FAO 旁邊"
+                }
+              ]
             },
             {
-              "title": "Bloomingdale's 59th St",
-              "note": "Lex & 59th，專櫃最完整；5th & 59th 往東 3 個街區",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bloomingdale%27s+59th+Street+New+York"
-            },
-            {
-              "title": "Saks Fifth Avenue",
-              "note": "5th & 50th，兒童樓層，量較少",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Saks+Fifth+Avenue+New+York"
-            },
-            {
-              "title": "Barnes & Noble 5th Ave",
-              "note": "5th & 46th，Rockefeller 對街，常有冷門款",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Barnes+%26+Noble+555+5th+Ave+New+York"
+              "label": "🧸 Jellycat 沿線",
+              "items": [
+                {
+                  "title": "Nordstrom NYC 旗艦店",
+                  "note": "225 W 57th & Broadway，兒童部；Central Park 改從 Columbus Circle 出來就在對面",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Nordstrom+NYC+225+W+57th+St"
+                },
+                {
+                  "title": "Bloomingdale's 59th St",
+                  "note": "Lex & 59th，專櫃最完整；5th & 59th 往東 3 個街區",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bloomingdale%27s+59th+Street+New+York"
+                },
+                {
+                  "title": "Saks Fifth Avenue",
+                  "note": "5th & 50th，兒童樓層，量較少",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Saks+Fifth+Avenue+New+York"
+                },
+                {
+                  "title": "Barnes & Noble 5th Ave",
+                  "note": "5th & 46th，Rockefeller 對街，常有冷門款",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Barnes+%26+Noble+555+5th+Ave+New+York"
+                }
+              ]
             }
           ]
         },
@@ -398,17 +447,20 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=FAO+Schwarz+Rockefeller+Center",
           "leg": {
             "mode": "walk",
-            "minutes": 15,
+            "minutes": 19,
             "label": "走去 Tonchin",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=FAO+Schwarz+Rockefeller+Center&destination=Tonchin+13+W+36th+St+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=FAO+Schwarz+Rockefeller+Center&destination=Tonchin+13+W+36th+St+New+York&travelmode=walking"
           },
-          "backupsLabel": "🧸 Jellycat 保底",
-          "backups": [
+          "lists": [
             {
-              "title": "Macy's Herald Square",
-              "note": "34th & Broadway，離飯店 3 分鐘，玩具部；任何一天回飯店前可繞",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Macy%27s+Herald+Square+New+York"
+              "label": "🧸 Jellycat 保底",
+              "items": [
+                {
+                  "title": "Macy's Herald Square",
+                  "note": "34th & Broadway，離飯店 3 分鐘，玩具部；任何一天回飯店前可繞",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Macy%27s+Herald+Square+New+York"
+                }
+              ]
             }
           ]
         },
@@ -423,10 +475,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tonchin+13+W+36th+St+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 12,
+            "minutes": 15,
             "label": "走去 Minskoff Theatre",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Tonchin+13+W+36th+St+New+York&destination=Minskoff+Theatre+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Tonchin+13+W+36th+St+New+York&destination=Minskoff+Theatre+New+York&travelmode=walking"
           }
         },
         {
@@ -441,23 +492,37 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Minskoff+Theatre+200+W+45th+St+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 4,
-            "label": "走去 M&M's",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Minskoff+Theatre+New+York&destination=M%26M%27s+Store+Times+Square+New+York&travelmode=walking"
+            "minutes": 1,
+            "label": "走去 Times Square",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Minskoff+Theatre+New+York&destination=Times+Square+New+York&travelmode=walking"
           }
         },
         {
           "id": "d2-times-square",
           "start": "22:10",
-          "title": "Times Square 拍照 + M&M's World",
+          "title": "Times Square 拍照",
           "kind": "sight",
           "photo": "photos/times-square.jpg",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Times+Square+New+York",
+          "leg": {
+            "mode": "walk",
+            "minutes": 1,
+            "label": "走去 M&M's",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Times+Square+New+York&destination=M%26M%27s+Store+Times+Square+New+York&travelmode=walking"
+          }
+        },
+        {
+          "id": "d2-mms",
+          "start": "22:25",
+          "title": "M&M's World",
+          "kind": "shop",
+          "photo": "photos/mms-world.jpg",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=M%26M%27s+Store+Times+Square+New+York",
           "leg": {
             "mode": "walk",
             "minutes": 4,
             "label": "走去 Junior's",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=M%26M%27s+Store+Times+Square+New+York&destination=1515+Broadway+New+York+NY+10036&travelmode=walking"
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=M%26M%27s+Store+Times+Square+New+York&destination=Junior%27s+Restaurant+Times+Square&destination_place_id=ChIJv8YTWFRYwokRkTUSNDg04Y4&travelmode=walking"
           }
         },
         {
@@ -467,12 +532,12 @@
           "kind": "food",
           "photo": "photos/juniors.jpg",
           "notes": "Times Square 店，1515 Broadway 靠 45th St，跟 Minskoff 同一棟。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Junior%27s+Restaurant+Times+Square+New+York",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Junior%27s+Restaurant+Times+Square&query_place_id=ChIJv8YTWFRYwokRkTUSNDg04Y4",
           "leg": {
             "mode": "walk",
-            "minutes": 6,
+            "minutes": 8,
             "label": "走去 Joe's Pizza",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=1515+Broadway+New+York+NY+10036&destination=Joe%27s+Pizza+1435+Broadway+New+York&travelmode=walking"
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Junior%27s+Restaurant+Times+Square&origin_place_id=ChIJv8YTWFRYwokRkTUSNDg04Y4&destination=Joe%27s+Pizza+1435+Broadway+New+York&travelmode=walking"
           }
         },
         {
@@ -484,10 +549,9 @@
           "notes": "Broadway & 40th。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Joe%27s+Pizza+1435+Broadway+New+York",
           "leg": {
-            "mode": "walk",
-            "minutes": 13,
-            "label": "走回飯店",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Joe%27s+Pizza+1435+Broadway+New+York&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=walking"
+            "mode": "drive",
+            "minutes": 8,
+            "label": "吃完叫 Uber 回飯店（深夜不走路）"
           }
         },
         {
@@ -514,7 +578,7 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
-            "minutes": 33,
+            "minutes": 28,
             "label": "1 號線到 South Ferry",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=Staten+Island+Ferry+Whitehall+Terminal+New+York&travelmode=transit"
           }
@@ -541,13 +605,12 @@
           "title": "Wall Street（銅牛、證交所）",
           "kind": "sight",
           "photo": "photos/charging-bull.jpg",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Charging+Bull+New+York",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Charging+Bull+Bowling+Green+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 12,
+            "minutes": 16,
             "label": "走去 Los Tacos Tribeca",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Charging+Bull+New+York&destination=Los+Tacos+No.+1+136+Church+St+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Charging+Bull+New+York&destination=Los+Tacos+No.+1+136+Church+St+New+York&travelmode=walking"
           }
         },
         {
@@ -556,14 +619,13 @@
           "title": "午餐 Los Tacos No.1",
           "kind": "food",
           "photo": "photos/los-tacos.jpg",
-          "notes": "Tribeca 店，136 Church St，離 9/11 Memorial 3 分；adobada 招牌，站著吃，這間排隊比 Chelsea Market 短。",
+          "notes": "Tribeca 店，136 Church St，離 9/11 Memorial 走路 7 分；adobada 招牌，站著吃，這間排隊比 Chelsea Market 短。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Los+Tacos+No.+1+136+Church+St+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 3,
+            "minutes": 7,
             "label": "走去 9/11 Memorial",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Los+Tacos+No.+1+136+Church+St+New+York&destination=National+September+11+Memorial+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Los+Tacos+No.+1+136+Church+St+New+York&destination=National+September+11+Memorial+New+York&travelmode=walking"
           }
         },
         {
@@ -575,9 +637,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=National+September+11+Memorial+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 24,
-            "label": "走去 Brooklyn Bridge 入口",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=National+September+11+Memorial+New+York&destination=Brooklyn+Bridge+Pedestrian+Entrance+Centre+St+New+York&travelmode=walking"
+            "minutes": 12,
+            "label": "走去 Brooklyn Bridge 入口（在 Brooklyn Bridge-City Hall 地鐵站旁）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=National+September+11+Memorial+New+York&destination=Brooklyn+Bridge-City+Hall&destination_place_id=ChIJDQXLLyJawokRI-xvbHx0AIM&travelmode=walking"
           }
         },
         {
@@ -586,18 +648,18 @@
           "title": "走 Brooklyn Bridge → DUMBO",
           "kind": "sight",
           "photo": "photos/brooklyn-bridge.jpg",
-          "leaveBy": "16:15",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Brooklyn+Bridge+Pedestrian+Entrance+Centre+St+New+York",
+          "leaveBy": "16:30",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Brooklyn+Bridge-City+Hall&query_place_id=ChIJDQXLLyJawokRI-xvbHx0AIM",
           "leg": {
             "mode": "walk",
-            "minutes": 40,
-            "label": "走橋到 DUMBO（純走 16 分，拍照抓 40）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Brooklyn+Bridge+Pedestrian+Entrance+Centre+St+New+York&destination=Washington+St+and+Water+St+DUMBO+Brooklyn&travelmode=walking"
+            "minutes": 60,
+            "label": "走橋到 DUMBO 拍照點（純走 28 分，加上橋上拍照抓 1 小時）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Brooklyn+Bridge-City+Hall&origin_place_id=ChIJDQXLLyJawokRI-xvbHx0AIM&destination=Washington+St+and+Water+St+DUMBO+Brooklyn&travelmode=walking"
           }
         },
         {
           "id": "d3-dumbo",
-          "start": "16:15",
+          "start": "16:30",
           "title": "DUMBO 拍照點",
           "kind": "sight",
           "photo": "photos/dumbo.jpg",
@@ -606,8 +668,8 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Washington+St+and+Water+St+DUMBO+Brooklyn",
           "leg": {
             "mode": "drive",
-            "minutes": 18,
-            "label": "叫車去 Peter Luger（地鐵要 33 分，18:15 出發會遲到）",
+            "minutes": 16,
+            "label": "叫車去 Peter Luger（地鐵要 32 分，18:15 出發會遲到）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Washington+St+and+Water+St+DUMBO+Brooklyn&destination=Peter+Luger+Steak+House+178+Broadway+Brooklyn&travelmode=driving"
           }
         },
@@ -623,9 +685,8 @@
           "leg": {
             "mode": "drive",
             "minutes": 25,
-            "label": "吃飽叫 Uber 回飯店最省事",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Peter+Luger+Steak+House+178+Broadway+Brooklyn&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit",
-            "untested": true
+            "label": "吃飽叫 Uber 回飯店（地鐵 37 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Peter+Luger+Steak+House+178+Broadway+Brooklyn&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit"
           }
         },
         {
@@ -654,7 +715,7 @@
           "leg": {
             "mode": "walk",
             "minutes": 32,
-            "label": "走去 MoMA（或地鐵 E 線到 5 Av/53 St）",
+            "label": "走去 MoMA（或地鐵 E 線到 5 Av/53 St，12 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=MoMA+New+York&travelmode=walking"
           }
         },
@@ -684,10 +745,9 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Katz%27s+Delicatessen+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 5,
+            "minutes": 10,
             "label": "走去 Morgenstern's",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Katz%27s+Delicatessen+New+York&destination=Morgenstern%27s+Finest+Ice+Cream+2+Rivington+St+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Katz%27s+Delicatessen+New+York&destination=Morgenstern%27s+Finest+Ice+Cream+2+Rivington+St+New+York&travelmode=walking"
           }
         },
         {
@@ -696,14 +756,13 @@
           "title": "點心 Morgenstern's Finest Ice Cream 🍦",
           "kind": "food",
           "photo": "photos/morgensterns.jpg",
-          "notes": "注意：Houston St 旗艦店 2025/10 已關，2026/4 改回原店 2 Rivington St（LES）重開，每天 12:00–24:00；小店不給試吃，直接點怪口味。",
+          "notes": "注意：Houston St 旗艦店 2025/10 已關，2026/4 改回原店 2 Rivington St（LES，Katz's 走路 10 分）重開，每天 12:00–24:00；小店不給試吃，直接點怪口味。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Morgenstern%27s+Finest+Ice+Cream+2+Rivington+St+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 12,
+            "minutes": 10,
             "label": "走去 Kith",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Morgenstern%27s+Finest+Ice+Cream+2+Rivington+St+New+York&destination=Kith+337+Lafayette+St+New+York&travelmode=walking",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Morgenstern%27s+Finest+Ice+Cream+2+Rivington+St+New+York&destination=Kith+337+Lafayette+St+New+York&travelmode=walking"
           }
         },
         {
@@ -717,22 +776,66 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Kith+337+Lafayette+St+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 20,
+            "minutes": 15,
             "label": "地鐵回飯店（Broadway-Lafayette 搭 B/D 到 34 St）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Kith+337+Lafayette+St+New+York&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit",
-            "untested": true
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Kith+337+Lafayette+St+New+York&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit"
           },
-          "backupsLabel": "🧸 Jellycat 附近",
-          "backups": [
+          "lists": [
             {
-              "title": "MoMA Design Store SoHo",
-              "note": "81 Spring St",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=MoMA+Design+Store+81+Spring+St+New+York"
+              "label": "SoHo / Nolita 順路點（都在 Kith 走路 10 分內，只有一小時，挑 3–4 間）",
+              "items": [
+                {
+                  "title": "Kith Women",
+                  "note": "644 Broadway，旗艦店走 2 分"
+                },
+                {
+                  "title": "Aimé Leon Dore",
+                  "note": "214 Mulberry St，紐約 streetwear 另一個代表，店後面有咖啡吧"
+                },
+                {
+                  "title": "Supreme",
+                  "note": "190 Bowery，週一下午不是 drop 日，好進"
+                },
+                {
+                  "title": "Palace / Noah",
+                  "note": "49 Howard St、95 Prince St，streetwear 再挑一間"
+                },
+                {
+                  "title": "Nike SoHo",
+                  "note": "529 Broadway，5th Ave 那間看過就跳過"
+                },
+                {
+                  "title": "Glossier / Le Labo / Aesop / Diptyque",
+                  "note": "72 Spring St；Le Labo 在 Elizabeth St，香水現場調"
+                },
+                {
+                  "title": "Reformation / Aritzia / Sézane",
+                  "note": "都在 Broadway / Prince 一帶"
+                },
+                {
+                  "title": "Elizabeth St 和 Mulberry St",
+                  "note": "獨立小店區，比 Broadway 大店好逛"
+                },
+                {
+                  "title": "McNally Jackson",
+                  "note": "52 Prince St，獨立書店"
+                }
+              ]
             },
             {
-              "title": "Bloomingdale's SoHo",
-              "note": "504 Broadway，小店不一定有",
-              "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bloomingdale%27s+SoHo+504+Broadway+New+York"
+              "label": "🧸 Jellycat 附近",
+              "items": [
+                {
+                  "title": "MoMA Design Store SoHo",
+                  "note": "81 Spring St",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=MoMA+Design+Store+81+Spring+St+New+York"
+                },
+                {
+                  "title": "Bloomingdale's SoHo",
+                  "note": "504 Broadway，小店不一定有",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Bloomingdale%27s+SoHo+504+Broadway+New+York"
+                }
+              ]
             }
           ]
         },
@@ -747,19 +850,19 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
-            "minutes": 45,
-            "label": "走到 Penn Station 搭 NJ Transit + AirTrain",
+            "minutes": 36,
+            "label": "走到 Penn Station 搭 NJ Transit + AirTrain（36 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=Newark+Liberty+International+Airport&travelmode=transit"
           }
         },
         {
           "id": "d4-ewr",
-          "start": "17:35",
+          "start": "17:30",
           "title": "到 EWR 報到、安檢",
           "kind": "transit",
           "photo": "photos/ewr.jpg",
           "booked": true,
-          "notes": "距起飛 1 小時 50 分。",
+          "notes": "距起飛約 2 小時。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Newark+Liberty+International+Airport"
         },
         {
