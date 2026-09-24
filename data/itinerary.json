@@ -5,15 +5,14 @@
     "notionUrl": "https://app.notion.com/p/3dabc029903e81b485cfee217af07c64",
     "standInPhotos": [
       "photos/home.jpg",
-      "photos/porter.jpg",
-      "photos/chicken-insider.jpg"
+      "photos/porter.jpg"
     ]
   },
   "days": [
     {
       "date": "2026-10-02",
-      "title": "Day 1（五）Chelsea → High Line → Hudson Yards → SUMMIT",
-      "note": "以下時間包含步行、等車與緩衝，交通依當天班次與路況調整。",
+      "title": "Day 1（五）L'Industrie → Little Island → Chelsea → High Line → Vessel → SUMMIT",
+      "note": "以下時間包含步行、等車與排隊預估，下午另留 20 分鐘休息／緩衝；17:10 前往 SUMMIT、19:45 前往 Noz 17 的交通時段要保留。",
       "stops": [
         {
           "id": "d1-home",
@@ -71,114 +70,108 @@
           "kind": "hotel",
           "photo": "photos/hotel.jpg",
           "leaveBy": "11:00",
-          "notes": "EVEN Hotel Times Square South，321 W 35th St。寄行李、整裝；可詢問下午房間何時備妥。",
+          "notes": "EVEN Hotel Times Square South，321 W 35th St。寄行李、整裝；先穿適合 Noz 17 的衣服，告知櫃台晚餐後回來 check-in，確認保留房間。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
-            "minutes": 30,
-            "label": "去 Chelsea Market",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN%20Hotel%20New%20York%20Times%20Square%20South&destination=Chelsea%20Market%20New%20York&travelmode=transit"
+            "minutes": 40,
+            "label": "地鐵去 L'Industrie（含走路、等車）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=L%27Industrie+Pizzeria+104+Christopher+St+New+York&travelmode=transit"
           }
         },
         {
-          "id": "d1-los-tacos",
-          "start": "11:30",
-          "title": "Los Tacos No.1 — Chelsea Market 店",
+          "id": "d1-lindustrie",
+          "start": "11:40",
+          "title": "L'Industrie Pizzeria（必吃）",
           "kind": "food",
-          "photo": "photos/los-tacos.jpg",
-          "leaveBy": "12:15",
-          "notes": "75 9th Ave；先吃 adobada，一人一個當開胃即可，留胃給生蠔與龍蝦堡。包含排隊，若隊伍長就順延並縮 Little Island。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Los%20Tacos%20No.1%20Chelsea%20Market",
+          "photo": "photos/lindustrie.jpg",
+          "leaveBy": "12:50",
+          "notes": "West Village 店，104 Christopher St：先到店排隊等 12:00 開門，留 70 分鐘含開門前等候、點餐與用餐。必點朋友推薦的 Fig Jam and Bacon（無花果醬、培根、mozzarella、ricotta）；兩人先分一片，想試第二種再加 Burrata，留胃給 Chelsea Market。單片口味依現場供應，點餐時先確認。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=L%27Industrie+Pizzeria+104+Christopher+St+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 1,
-            "label": "同一個市場裡，走去 Cull & Pistol"
-          }
-        },
-        {
-          "id": "d1-cull-pistol",
-          "start": "12:15",
-          "title": "Cull & Pistol：生蠔＋龍蝦堡午餐",
-          "kind": "food",
-          "photo": "photos/chelsea-market.jpg",
-          "leaveBy": "13:30",
-          "notes": "用餐預留 75 分鐘，等位久可用到 13:45；尚未訂位。餐廳每天 11:30 開，官網有冷／熱龍蝦堡，依當日菜單選。午餐按一般價預算；happy hour 為週一至五 16:00–18:00 生蠔半價，龍蝦堡按原價。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Cull+%26+Pistol+Chelsea+Market+New+York",
-          "leg": {
-            "mode": "walk",
-            "minutes": 10,
-            "label": "走去 Little Island（來回都算在 45 分內）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Chelsea%20Market%20New%20York&destination=Little%20Island%20New%20York&travelmode=walking"
+            "minutes": 25,
+            "label": "步行前往 Little Island（含過馬路與找入口）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=L%27Industrie+Pizzeria+104+Christopher+St+New+York&destination=Little+Island+New+York&travelmode=walking"
           }
         },
         {
           "id": "d1-little-island",
-          "start": "13:30",
-          "title": "Little Island／Chelsea Market 彈性二選一",
-          "kind": "free",
+          "start": "13:15",
+          "title": "Little Island（必去）",
+          "kind": "sight",
           "photo": "photos/little-island.jpg",
-          "notes": "天氣好且午餐準時結束，可到 Little Island 短逛，再回 16th St；若午餐或交通延誤，就留在市場逛，Little Island 作備案。這 45 分包含往返移動。",
+          "notes": "留 45 分鐘看河景、逛步道、拍照與坐一下，依興趣選觀景點。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Little+Island+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 5,
-            "label": "走去 High Line 16th St 入口",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Little%20Island%20New%20York&destination=W%2016th%20St%20%26%2010th%20Ave%20New%20York&travelmode=walking"
+            "minutes": 15,
+            "label": "步行前往 Chelsea Market（含找入口）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Little+Island+New+York&destination=Chelsea+Market+New+York&travelmode=walking"
           },
-          "leaveBy": "14:15",
+          "leaveBy": "14:00"
+        },
+        {
+          "id": "d1-los-tacos",
+          "start": "14:15",
+          "title": "Los Tacos No.1 — Chelsea Market 店",
+          "kind": "food",
+          "photo": "photos/los-tacos.jpg",
+          "leaveBy": "15:00",
+          "notes": "75 9th Ave：留 45 分鐘排隊、點餐與用餐，adobada 一人一個或依胃口加點。以 15:00 結束餐飲為目標。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Los%20Tacos%20No.1%20Chelsea%20Market",
           "lists": [
             {
-              "label": "彈性備案",
+              "label": "龍蝦堡彈性加點",
               "items": [
                 {
-                  "title": "L'Industrie Pizzeria",
-                  "note": "West Village，104 Christopher St；時間與胃口充足時可去吃一片 pizza",
-                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=L'Industrie%20Pizzeria%20104%20Christopher%20St%20New%20York"
+                  "title": "Lobster Place",
+                  "note": "同在 Chelsea Market。只有 tacos 提早吃完、現場無長隊且還有胃口時，兩人分一份 Maine Lobster Roll。櫃台點餐、站立用餐，不接受訂位；官網 4oz US$28、6oz US$38，價格以現場為準",
+                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Lobster+Place+Chelsea+Market+New+York"
                 }
               ]
             }
           ]
         },
         {
-          "id": "d1-high-line",
-          "start": "14:15",
-          "title": "High Line 慢慢走",
-          "kind": "sight",
-          "photo": "photos/high-line.jpg",
-          "notes": "16th St 上去，往北逛到約 23rd St 下來；沿途坐坐、看景、拍照，依心情決定散步距離。🚧 16th St 電梯目前公告維修：可走樓梯，需要電梯改 14th St，當天再確認。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=W+16th+St+%26+10th+Ave+New+York",
+          "id": "d1-buffer",
+          "start": "15:00",
+          "title": "休息／行程緩衝",
+          "kind": "free",
+          "photo": "photos/chelsea-market.jpg",
+          "leaveBy": "15:20",
+          "notes": "前面準時就坐一下或在市場短逛；若航班、交通或排隊延誤，用這 20 分鐘吸收。",
           "leg": {
             "mode": "walk",
-            "minutes": 25,
-            "label": "從 23rd St 出口走回飯店",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=High%20Line%2023rd%20Street%20Entrance&destination=EVEN%20Hotel%20New%20York%20Times%20Square%20South&travelmode=walking"
-          },
-          "leaveBy": "15:00"
-        },
-        {
-          "id": "d1-hotel-checkin",
-          "start": "15:30",
-          "title": "EVEN Hotel check-in",
-          "kind": "hotel",
-          "photo": "photos/hotel.jpg",
-          "leaveBy": "16:00",
-          "notes": "15:30–16:00 check-in／換衣服、短休息（以房間已備妥為前提；若尚未備妥或午餐延誤，就改餐後 check-in，出門前已穿適合 Noz 17 的衣服）。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
-          "leg": {
-            "mode": "walk",
-            "minutes": 28,
-            "label": "走去 Vessel（25–30 分含步行與找入口）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN%20Hotel%20New%20York%20Times%20Square%20South&destination=Vessel%20Hudson%20Yards%20New%20York&travelmode=walking"
+            "minutes": 10,
+            "label": "步行前往 High Line 16th St 入口（🚧 16th St 電梯維修中：可走樓梯，需要電梯改 14th St）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Chelsea+Market+New+York&destination=W+16th+St+and+10th+Ave+New+York&travelmode=walking"
           }
         },
         {
+          "id": "d1-high-line",
+          "start": "15:30",
+          "title": "High Line 短段慢走",
+          "kind": "sight",
+          "photo": "photos/high-line.jpg",
+          "notes": "16th St 上去往北，約 23rd St 下來；留 40 分鐘看景、拍照、坐一下，依心情決定散步距離。🚧 16th St 電梯目前公告維修：可走樓梯，需要電梯改 14th St，當天再確認並預留額外步行時間。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=W+16th+St+and+10th+Ave+New+York",
+          "leg": {
+            "mode": "walk",
+            "minutes": 30,
+            "label": "從 High Line 23rd St 出口前往 Vessel（步行與找入口）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=High+Line+23rd+Street+Entrance&destination=Vessel+Hudson+Yards+New+York&travelmode=walking"
+          },
+          "leaveBy": "16:10"
+        },
+        {
           "id": "d1-vessel",
-          "start": "16:30",
+          "start": "16:40",
           "title": "Vessel",
           "kind": "sight",
           "photo": "photos/vessel.jpg",
           "leaveBy": "17:10",
-          "notes": "Flex 票待購。預留約 40 分鐘參觀與拍照，17:10 出發前往 SUMMIT。",
+          "notes": "Flex 票待購。約 30 分鐘參觀與拍照，17:10 出發前往 SUMMIT。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Vessel+Hudson+Yards+New+York",
           "leg": {
             "mode": "transit",
@@ -219,16 +212,16 @@
           "leg": {
             "mode": "drive",
             "minutes": 25,
-            "label": "Uber 回飯店（連等車與車程 20–30 分）；若下午沒完成 check-in，餐後辦理並提早確認飯店晚到安排"
+            "label": "Uber 回飯店辦理 check-in（連等車與車程 20–30 分）"
           }
         },
         {
           "id": "d1-hotel-night",
           "start": "23:40",
-          "title": "回飯店",
+          "title": "回飯店 check-in",
           "kind": "hotel",
           "photo": "photos/hotel.jpg",
-          "notes": "明天 8:00 出發。",
+          "notes": "晚餐後辦理 check-in。明天 8:00 出發。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South"
         }
       ]
@@ -280,27 +273,27 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Solomon+R.+Guggenheim+Museum+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 25,
-            "label": "步行前往 Chicken Insider（含找店）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Solomon+R.+Guggenheim+Museum+New+York&destination=Chicken+Insider+1752+2nd+Ave+New+York&travelmode=walking"
+            "minutes": 30,
+            "label": "步行前往 Tha Phraya（含找店與報到）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Solomon+R.+Guggenheim+Museum+New+York&destination=Tha+Phraya+1553+2nd+Ave+New+York&travelmode=walking"
           }
         },
         {
-          "id": "d2-chicken-insider",
-          "start": "12:55",
-          "title": "午餐 Chicken Insider",
+          "id": "d2-tha-phraya",
+          "start": "13:00",
+          "title": "午餐 Tha Phraya",
           "kind": "food",
-          "photo": "photos/chicken-insider.jpg",
-          "leaveBy": "13:40",
-          "notes": "1752 2nd Ave，上東城韓式炸雞小店。預留 45 分鐘點餐、等餐與用餐；兩人可分一份炸雞加配菜，留胃給 17:15 Tonchin。官網目前無骨腿肉炸雞 10 塊／帶骨半雞各 US$14.99，價格以現場為準。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Chicken+Insider+1752+2nd+Ave+New+York",
+          "photo": "photos/tha-phraya.jpg",
+          "leaveBy": "14:00",
+          "notes": "朋友推薦；1553 2nd Ave，尚未訂位，建議預訂 13:00。週六 11:30 開始營業，留一小時點餐與用餐；可從 Khao Soi、Pork Kra Prow、Beef Pad See-iw 選兩道分食，留胃給 17:15 Tonchin。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tha+Phraya+1553+2nd+Ave+New+York",
           "lists": [
             {
               "label": "午餐備案",
               "items": [
                 {
                   "title": "The Halal Guys",
-                  "note": "53rd & 6th；Chicken Insider 若未營業或等候過久，先往中城再吃，公園依剩餘時間短逛；sandwich 或兩人分食",
+                  "note": "53rd & 6th；若 Tha Phraya 候位過久，先往中城再吃，公園依剩餘時間短逛；sandwich 或兩人分食",
                   "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Halal+Guys+West+53rd+Street+New+York"
                 }
               ]
@@ -308,19 +301,19 @@
           ],
           "leg": {
             "mode": "drive",
-            "minutes": 35,
+            "minutes": 30,
             "label": "計程車／Uber 前往 Central Park 東南角（5th Ave & 59th St），含等車",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Chicken+Insider+1752+2nd+Ave+New+York&destination=Grand+Army+Plaza+Manhattan+New+York&travelmode=driving"
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Tha+Phraya+1553+2nd+Ave+New+York&destination=Grand+Army+Plaza+Manhattan+New+York&travelmode=driving"
           }
         },
         {
           "id": "d2-central-park",
-          "start": "14:15",
-          "title": "Central Park 輕鬆散步",
+          "start": "14:30",
+          "title": "Central Park 短逛",
           "kind": "sight",
           "photo": "photos/gapstow.jpg",
-          "notes": "從東南角進去，看 The Pond／Gapstow Bridge，再回 Fifth Avenue；約半小時含拍照，午餐或交通延誤時縮短散步。",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Gapstow+Bridge+Central+Park+New+York",
+          "notes": "從東南角進去，在 The Pond 入口附近看景、拍照，再回 Fifth Avenue；午餐或交通延誤時縮短這段。",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Pond+Central+Park+New+York",
           "leg": {
             "mode": "walk",
             "minutes": 5,
