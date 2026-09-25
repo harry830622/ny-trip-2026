@@ -1,4 +1,4 @@
-const VERSION = "v15";
+const VERSION = "v16";
 const CACHE = `ny-trip-${VERSION}`;
 const DATA_PATH = "data/itinerary.json";
 const SHELL = [

@@ -12,7 +12,7 @@
     {
       "date": "2026-10-02",
       "title": "Day 1（五）L'Industrie → Little Island → Chelsea → High Line → Vessel → SUMMIT",
-      "note": "以下時間包含步行、等車與排隊預估，下午另留 20 分鐘休息／緩衝；17:10 前往 SUMMIT、19:45 前往 Noz 17 的交通時段要保留。",
+      "note": "以下時間包含步行、等車與排隊預估，下午留 20 分鐘休息／緩衝；前面延誤時先不加點龍蝦堡，再縮短 High Line 散步。目標 16:30 抵達 Vessel，17:10 前往 SUMMIT，19:45 已到街上出發去 Noz 17。",
       "stops": [
         {
           "id": "d1-home",
@@ -140,7 +140,7 @@
           "kind": "free",
           "photo": "photos/chelsea-market.jpg",
           "leaveBy": "15:20",
-          "notes": "前面準時就坐一下或在市場短逛；若航班、交通或排隊延誤，用這 20 分鐘吸收。",
+          "notes": "前面準時就坐一下或在市場短逛；延誤超過 20 分鐘時，縮短後面的 High Line 散步，保留 Vessel 入場與 SUMMIT 交通時間。",
           "leg": {
             "mode": "walk",
             "minutes": 10,
@@ -154,7 +154,7 @@
           "title": "High Line 短段慢走",
           "kind": "sight",
           "photo": "photos/high-line.jpg",
-          "notes": "16th St 上去往北，約 23rd St 下來；留 40 分鐘看景、拍照、坐一下，依心情決定散步距離。🚧 16th St 電梯目前公告維修：可走樓梯，需要電梯改 14th St，當天再確認並預留額外步行時間。",
+          "notes": "16th St 上去往北，約 23rd St 下來；留 30 分鐘看景、拍照，依心情決定散步距離。若前面延誤就縮短路段，16:00 開始往 Vessel 移動。🚧 16th St 電梯目前公告維修：可走樓梯，需要電梯改 14th St，當天再確認並預留額外步行時間。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=W+16th+St+and+10th+Ave+New+York",
           "leg": {
             "mode": "walk",
@@ -162,16 +162,16 @@
             "label": "從 High Line 23rd St 出口前往 Vessel（步行與找入口）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=High+Line+23rd+Street+Entrance&destination=Vessel+Hudson+Yards+New+York&travelmode=walking"
           },
-          "leaveBy": "16:10"
+          "leaveBy": "16:00"
         },
         {
           "id": "d1-vessel",
-          "start": "16:40",
+          "start": "16:30",
           "title": "Vessel",
           "kind": "sight",
           "photo": "photos/vessel.jpg",
           "leaveBy": "17:10",
-          "notes": "Flex 票待購。約 30 分鐘參觀與拍照，17:10 出發前往 SUMMIT。",
+          "notes": "Flex 票待購。預留約 10 分鐘入場緩衝、30 分鐘參觀與拍照。Flex 可彈性選當日抵達時間，仍需排隊；入場較慢就縮短參觀，17:10 出發前往 SUMMIT。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Vessel+Hudson+Yards+New+York",
           "leg": {
             "mode": "transit",
@@ -188,7 +188,7 @@
           "photo": "photos/summit.jpg",
           "booked": true,
           "leaveBy": "19:45",
-          "notes": "已訂 18:00，17:50 到、依票面時間與現場指示排隊。留約 1 小時 45 分給入場與體驗，日落／夜景依天氣和排隊狀況看；穿褲子、舒適鞋，可從這裡看 Empire State Building 外觀。離場電梯也要排隊，19:30 左右開始留意離場流程。",
+          "notes": "已訂 18:00，17:50 到、依票面時間與現場指示排隊。留約 1 小時 45 分給入場與體驗，日落／夜景依天氣和排隊狀況看；穿褲子、舒適鞋，可從這裡看 Empire State Building 外觀。離場電梯也要排隊，19:15–19:20 開始離場，依現場隊伍提早；19:45 前已到街上出發去 Noz 17。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Summit+One+Vanderbilt+New+York",
           "leg": {
             "mode": "transit",
@@ -269,7 +269,7 @@
           "photo": "photos/guggenheim.jpg",
           "arriveBy": "10:15",
           "leaveBy": "12:30",
-          "notes": "門票待購。1071 Fifth Avenue at 89th St；預留約兩小時含入場安檢，看螺旋建築、Guggenheim Pop: 1960 to Now 與 Taryn Simon: Father Country I Do Love You，依興趣分配時間；若多看半小時，就從下午購物扣除。",
+          "notes": "門票待購。1071 Fifth Avenue at 89th St；預留約兩小時含入場安檢，看螺旋建築、Guggenheim Pop: 1960 to Now 與 Taryn Simon: Father Country I Do Love You，依興趣分配時間，12:30 準時離館，前往 13:00 已訂位的 Tha Phraya。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Solomon+R.+Guggenheim+Museum+New+York",
           "leg": {
             "mode": "walk",
@@ -285,7 +285,7 @@
           "kind": "food",
           "photo": "photos/tha-phraya.jpg",
           "leaveBy": "14:00",
-          "notes": "朋友推薦；1553 2nd Ave，尚未訂位，建議預訂 13:00。週六 11:30 開始營業，留一小時點餐與用餐；可從 Khao Soi、Pork Kra Prow、Beef Pad See-iw 選兩道分食，留胃給 17:15 Tonchin。",
+          "notes": "朋友推薦；1553 2nd Ave，已訂 13:00，2 人。週六 11:30 開始營業，留一小時點餐與用餐；可從 Khao Soi、Pork Kra Prow、Beef Pad See-iw 選兩道分食，留胃給 17:15 Tonchin。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tha+Phraya+1553+2nd+Ave+New+York",
           "lists": [
             {
@@ -293,7 +293,7 @@
               "items": [
                 {
                   "title": "The Halal Guys",
-                  "note": "53rd & 6th；若 Tha Phraya 候位過久，先往中城再吃，公園依剩餘時間短逛；sandwich 或兩人分食",
+                  "note": "53rd & 6th；僅在 Tha Phraya 臨時無法接待時使用；先往中城再吃，公園依剩餘時間短逛，sandwich 或兩人分食",
                   "mapUrl": "https://www.google.com/maps/search/?api=1&query=The+Halal+Guys+West+53rd+Street+New+York"
                 }
               ]
@@ -304,7 +304,8 @@
             "minutes": 30,
             "label": "計程車／Uber 前往 Central Park 東南角（5th Ave & 59th St），含等車",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Tha+Phraya+1553+2nd+Ave+New+York&destination=Grand+Army+Plaza+Manhattan+New+York&travelmode=driving"
-          }
+          },
+          "booked": true
         },
         {
           "id": "d2-central-park",
@@ -327,7 +328,7 @@
           "title": "Fifth Avenue／Rockefeller Center 購物",
           "kind": "shop",
           "photo": "photos/fifth-avenue.jpg",
-          "notes": "約 1 小時 55 分：從 59th St 往南，先挑 57th–59th 想逛的店，再往 Rockefeller Center 收尾。16:40 離開前往晚餐；最後一站以 Rockefeller／5th Ave 46th–50th St 一帶為主，別在 16:40 才從 59th St 出發。",
+          "notes": "約 1 小時 55 分：從 59th St 往南，從清單挑約 3 間重點店，移動、排隊與試穿都算在內，再往 Rockefeller Center 收尾。16:40 離開前往晚餐；最後一站以 Rockefeller／5th Ave 46th–50th St 一帶為主，別在 16:40 才從 59th St 出發。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Fifth+Avenue+and+59th+Street+New+York",
           "leg": {
             "mode": "walk",
@@ -554,45 +555,30 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Charging+Bull+Bowling+Green+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 10,
+            "minutes": 5,
             "label": "走去 Conwell",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=New%20York%20Stock%20Exchange&destination=Conwell%20Coffee%20Hall%206%20Hanover%20St%20New%20York&travelmode=walking"
           },
           "leaveBy": "12:45",
-          "notes": "拍照後走去 Conwell，預留找路時間。"
+          "notes": "拍照後走去 Conwell，12:50 抵達報到。"
         },
         {
           "id": "d3-conwell",
           "start": "13:00",
-          "title": "午餐 Conwell Coffee Hall",
+          "title": "Conwell Coffee Hall brunch",
           "kind": "food",
           "photo": "photos/conwell.jpg",
           "leaveBy": "14:15",
-          "notes": "6 Hanover St，Art Deco 舊銀行空間；白天先到先坐，預留點餐與等位。官方週日 09:00–21:00，週末 brunch 10:00–15:00；可頌／French toast 以當日菜單為準。若候位超過約 30 分鐘，改附近備案，保護下午行程。",
+          "notes": "已訂 13:00。6 Hanover St，Art Deco 舊銀行空間。12:50 抵達報到，預留 75 分鐘點餐與用餐；餐點以當日 brunch 菜單為準。若用餐延後，縮短下一站 9/11 Memorial 的停留，17:45 從 DUMBO 前往 Peter Luger 的時間保留。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Conwell%20Coffee%20Hall%206%20Hanover%20St%20New%20York",
-          "lists": [
-            {
-              "label": "備案（候位超過 30 分）",
-              "items": [
-                {
-                  "title": "Leo's Bagels",
-                  "note": "3 Hanover Square，隔壁",
-                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Leo%27s+Bagels+3+Hanover+Square+New+York"
-                },
-                {
-                  "title": "Black Fox Coffee",
-                  "note": "70 Pine St，走 3 分",
-                  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Black+Fox+Coffee+70+Pine+St+New+York"
-                }
-              ]
-            }
-          ],
           "leg": {
             "mode": "walk",
             "minutes": 23,
             "label": "走去 9/11 Memorial（20–25 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Conwell%20Coffee%20Hall%206%20Hanover%20St%20New%20York&destination=National%20September%2011%20Memorial%20New%20York&travelmode=walking"
-          }
+          },
+          "booked": true,
+          "arriveBy": "12:50"
         },
         {
           "id": "d3-911",
@@ -652,15 +638,15 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Peter+Luger+Steak+House+178+Broadway+Brooklyn",
           "leg": {
             "mode": "drive",
-            "minutes": 25,
-            "label": "吃飽叫 Uber 回飯店（地鐵 37 分）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Peter+Luger+Steak+House+178+Broadway+Brooklyn&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit"
+            "minutes": 50,
+            "label": "餐後直接叫 Uber 回飯店（含等車與路況 40–60 分，依當晚交通調整）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Peter+Luger+Steak+House+178+Broadway+Brooklyn&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=driving"
           },
           "arriveBy": "18:35"
         },
         {
           "id": "d3-hotel-night",
-          "start": "21:15",
+          "start": "21:30",
           "title": "回飯店",
           "kind": "hotel",
           "photo": "photos/hotel.jpg",
@@ -727,8 +713,8 @@
           "title": "SoHo／Nolita 購物 — Kith 旗艦店",
           "kind": "shop",
           "photo": "photos/soho.jpg",
-          "leaveBy": "15:15",
-          "notes": "約 1 小時 25 分：Kith（337 Lafayette St）優先，再選 1–2 間；含走路、結帳、試穿。15:15 出發回飯店；若當天導航需超過 30 分鐘，提早到 15:00–15:05 離開。",
+          "leaveBy": "15:00",
+          "notes": "約 1 小時 10 分：Kith（337 Lafayette St）優先，再選一間重點店；含走路、結帳、試穿，15:00 準時出發回飯店（預計 15:30–15:40 到）。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Kith+337+Lafayette+St+New+York",
           "leg": {
             "mode": "transit",
@@ -738,7 +724,7 @@
           },
           "lists": [
             {
-              "label": "SoHo / Nolita 順路點（都在 Kith 走路 10 分內，只有一小時，挑 3–4 間）",
+              "label": "SoHo / Nolita 候選店（Kith 之外再選一間，移動、排隊及試穿都算在購物時間內）",
               "items": [
                 {
                   "title": "Kith Women",
@@ -758,7 +744,7 @@
                 },
                 {
                   "title": "Nike SoHo",
-                  "note": "529 Broadway，5th Ave 那間看過就跳過"
+                  "note": "611 Broadway，5th Ave 那間看過就跳過"
                 },
                 {
                   "title": "Glossier / Le Labo / Aesop / Diptyque",
@@ -798,7 +784,7 @@
               "items": [
                 {
                   "title": "Morgenstern's Finest Ice Cream",
-                  "note": "2 Rivington St，在 Katz's → SoHo 途中；若要吃，從購物時段扣約 20–30 分鐘，15:15 的截止不動。營業狀態與時間待出發前確認",
+                  "note": "2 Rivington St，在 Katz's → SoHo 途中；若要吃，從購物時段扣約 20–30 分鐘，15:00 的截止不動。營業狀態與時間待出發前確認",
                   "mapUrl": "https://www.google.com/maps/search/?api=1&query=Morgenstern's%20Finest%20Ice%20Cream%202%20Rivington%20St%20New%20York"
                 }
               ]
@@ -807,12 +793,12 @@
         },
         {
           "id": "d4-hotel-bags",
-          "start": "15:45",
+          "start": "15:35",
           "title": "回飯店拿行李",
           "kind": "hotel",
           "photo": "photos/hotel.jpg",
           "leaveBy": "16:00",
-          "notes": "取行李預留 15 分鐘，16:00 出發。🚧 回程時段不在 Day 1 所列的 AirTrain 固定停駛時間內；出發前查當天異動，若有長時間延誤便提早離開。",
+          "notes": "取行李預留 15 分鐘，最晚 16:00 出發往機場。🚧 回程時段不在 Day 1 所列的 AirTrain 固定停駛時間內；出發前查當天異動，若有長時間延誤便提早離開。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
