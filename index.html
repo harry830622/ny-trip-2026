@@ -39,12 +39,15 @@
 </head>
 <body data-cue="idle">
   <h1 class="visually-hidden">2026 紐約行</h1>
-  <div id="preview-banner" class="rehearsal" hidden></div>
+  <div id="preview-banner" class="rehearsal" hidden>
+    <p><strong>預覽</strong><span id="preview-date"></span> <time id="preview-time"></time></p>
+    <button type="button" id="preview-exit">回到現在</button>
+  </div>
   <section id="call" class="call" aria-label="離開提醒"></section>
   <p id="announce" class="visually-hidden" aria-live="polite"></p>
   <main class="stage">
     <div class="prompt">
-      <div id="cards"></div>
+      <div id="cards" tabindex="-1"></div>
       <button type="button" id="pull" class="pull" aria-expanded="false" aria-controls="order"></button>
     </div>
     <div class="order-col">
@@ -60,9 +63,40 @@
   <footer class="colophon">
     <a href="https://app.notion.com/p/3dabc029903e81b485cfee217af07c64" target="_blank" rel="noopener">Notion 原稿</a>
     <a href="credits.html">照片來源</a>
-    <button type="button" id="preview-toggle">預覽其他時間</button>
-    <input type="datetime-local" id="preview-input" aria-label="預覽時間（紐約）" min="2026-10-02T00:00" max="2026-10-05T23:59" hidden>
   </footer>
+  <div id="preview-dock" class="preview-dock">
+    <div id="preview-launcher" class="preview-launcher">
+      <button type="button" id="preview-toggle" class="preview-entry" aria-controls="preview-controls" aria-expanded="false" title="行程載入後可預覽" disabled><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>預覽行程</button>
+    </div>
+    <section id="preview-controls" class="preview-controls" aria-label="預覽行程控制" hidden>
+      <nav id="preview-days" class="preview-days" aria-label="預覽日期"></nav>
+      <div class="preview-scrub">
+        <div class="preview-description"><label for="preview-slider">拖動時間</label><span id="preview-position"></span></div>
+        <div class="preview-track">
+          <div class="preview-rail" aria-hidden="true"><span id="preview-fill"></span></div>
+          <div id="preview-markers" class="preview-markers" aria-hidden="true"></div>
+          <input type="range" id="preview-slider" min="0" max="1439" step="1" value="0" aria-describedby="preview-slider-hint" disabled>
+        </div>
+        <div class="preview-range" aria-hidden="true"><span id="preview-start"></span><span class="preview-legend"><i></i> 已訂</span><span id="preview-end"></span></div>
+        <p id="preview-slider-hint" class="visually-hidden">短線標記每一站的開始時間。左右方向鍵調整一分鐘，或用上一站、下一站直接跳站。</p>
+        <p id="preview-outside" class="preview-hint" hidden></p>
+        <div class="preview-steps">
+          <button type="button" id="preview-previous" disabled><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg>上一站</button>
+          <button type="button" id="preview-next" disabled>下一站<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+        </div>
+        <details id="preview-exact" class="preview-exact">
+          <summary>輸入確切時間<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <form id="preview-form" novalidate>
+            <label for="preview-input" id="preview-input-label">確切時間（紐約）</label>
+            <div class="preview-fields"><input type="time" id="preview-input" step="60" required disabled><button type="submit" disabled>前往</button></div>
+            <p id="preview-input-hint" class="preview-hint"></p>
+            <p id="preview-input-error" class="preview-hint" role="alert" hidden></p>
+          </form>
+        </details>
+      </div>
+    </section>
+  </div>
+  <p id="preview-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
   <script type="module" src="src/main.js"></script>
 </body>
 </html>

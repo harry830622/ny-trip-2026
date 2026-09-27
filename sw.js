@@ -1,4 +1,4 @@
-const VERSION = "v16";
+const VERSION = "v17";
 const CACHE = `ny-trip-${VERSION}`;
 const DATA_PATH = "data/itinerary.json";
 const SHELL = [
@@ -11,6 +11,8 @@ const SHELL = [
   "src/schedule.js",
   "src/labels.js",
   "src/render.js",
+  "src/preview.js",
+  "src/preview-ui.js",
   "data/itinerary.json",
   "manifest.webmanifest",
   "fonts/league-gothic-latin.woff2",

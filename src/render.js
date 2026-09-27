@@ -61,13 +61,6 @@ function dateLabel(date) {
   return `${String(month).padStart(2, "0")}/${String(day).padStart(2, "0")}（${weekday}）`;
 }
 
-export function renderPreviewBanner(el, now, isPreview) {
-  el.hidden = !isPreview;
-  setHtml(el, isPreview
-    ? `<p><strong>預覽</strong>${dateLabel(now.date)} ${formatMinutes(now.minutes)}</p><button type="button" id="preview-exit">回到現在</button>`
-    : "");
-}
-
 // The call keeps one set of elements for its whole life and only patches their text. Replacing them would
 // make every change of state appear finished; keeping them lets the quiet line grow into the band.
 // Returns the call so the caller can flood the band and the browser chrome to match.

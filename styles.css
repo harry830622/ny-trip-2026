@@ -33,6 +33,9 @@
   --rule-hair: 1px solid var(--hairline);
   --gutter: max(1rem, calc((100% - 35rem) / 2));
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --preview-header-height: 0px;
+  --preview-dock-height: calc(3.5rem + env(safe-area-inset-bottom));
+  --call-safe-top: env(safe-area-inset-top);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -49,7 +52,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 /* Two people use this one-handed on the street: an accidental pinch or double-tap zoom only gets in the way. */
-html { scrollbar-color: var(--ink) transparent; -webkit-text-size-adjust: 100%; touch-action: pan-x pan-y; }
+html { scrollbar-color: var(--ink) transparent; -webkit-text-size-adjust: 100%; touch-action: pan-x pan-y; scroll-padding-top: calc(var(--preview-header-height) + 4rem); scroll-padding-bottom: calc(var(--preview-dock-height) + 1rem); }
 
 body {
   margin: 0;
@@ -90,10 +93,13 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 .stage, .prompt, .order-col { display: contents; }
 
 /* Rehearsal: the sheet inverted into a solid band, so a previewed time is never mistaken for live. */
-.rehearsal { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.375rem var(--gutter); background: var(--ink); color: var(--ground); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
-.rehearsal[hidden] { display: none; }
-.rehearsal strong { margin-right: 0.5rem; font-weight: 800; letter-spacing: 0.08em; }
-.rehearsal button { padding: 0.125rem 0.625rem; background: none; border: 1.5px solid currentColor; font-weight: 700; }
+.rehearsal { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; padding: calc(0.375rem + env(safe-area-inset-top)) var(--gutter) 0.375rem; background: var(--ink); color: var(--ground); font-size: 0.875rem; font-variant-numeric: tabular-nums; }
+[hidden] { display: none !important; }
+[data-preview="true"] { --call-safe-top: 0px; }
+.rehearsal p { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.375rem; min-width: 0; }
+.rehearsal strong { font-weight: 800; letter-spacing: 0.08em; }
+.rehearsal time { font: 400 1.75rem/1 var(--gothic); }
+.rehearsal button { flex: none; min-height: 2.75rem; padding: 0.125rem 0.625rem; background: none; border: 1.5px solid currentColor; font-weight: 700; }
 .rehearsal :focus-visible { outline-color: var(--ground); }
 
 /* The call. While there is time it is one quiet line at the top edge: the page below belongs to the stop.
@@ -105,8 +111,8 @@ h1, h2, h3, p, ol, ul { margin: 0; }
    The band never pushes the page. The call reserves only the quiet line's height in the flow; its inner
    box grows downward over the top of the photo, so the name, the note, the next stop and the button stay
    exactly where they were. */
-.call { --call-line: 2.75rem; position: sticky; top: 0; z-index: 5; height: calc(var(--call-line) + env(safe-area-inset-top)); font-variant-numeric: tabular-nums; }
-.call-inner { position: absolute; top: 0; left: 0; right: 0; isolation: isolate; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.5rem; row-gap: 0; min-height: 100%; padding: calc(0.75rem + env(safe-area-inset-top)) var(--call-gutter, var(--gutter)) 0.5rem; background: var(--ground); border-bottom: var(--rule-hair); transition: color 0.3s var(--ease-out) 0.1s, border-color 0.3s var(--ease-out); }
+.call { --call-line: 2.75rem; position: sticky; top: var(--preview-header-height); z-index: 5; height: calc(var(--call-line) + var(--call-safe-top)); font-variant-numeric: tabular-nums; }
+.call-inner { position: absolute; top: 0; left: 0; right: 0; isolation: isolate; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.5rem; row-gap: 0; min-height: 100%; padding: calc(0.75rem + var(--call-safe-top)) var(--call-gutter, var(--gutter)) 0.5rem; background: var(--ground); border-bottom: var(--rule-hair); transition: color 0.3s var(--ease-out) 0.1s, border-color 0.3s var(--ease-out); }
 .call-inner::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--flood, transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.55s var(--ease-out), background-color 0.35s var(--ease-out); }
 .call-big { min-width: 0%; line-height: 1; transition: font-size 0.45s var(--ease-out); }
 .call-big.is-numeral { font-family: var(--gothic); font-size: 1.25rem; letter-spacing: 0.01em; }
@@ -118,7 +124,7 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 .call-strip .tape-strip { margin: 0.5rem calc(-1 * var(--call-gutter, var(--gutter))) -0.5rem; }
 
 /* The band: only for a warning or an alert. */
-[data-cue="warning"] .call-inner, [data-cue="alert"] .call-inner { row-gap: 0.25rem; padding: calc(0.875rem + env(safe-area-inset-top)) var(--call-gutter, var(--gutter)) 0.75rem; border-bottom: var(--rule-heavy); }
+[data-cue="warning"] .call-inner, [data-cue="alert"] .call-inner { row-gap: 0.25rem; padding: calc(0.875rem + var(--call-safe-top)) var(--call-gutter, var(--gutter)) 0.75rem; border-bottom: var(--rule-heavy); }
 [data-cue="warning"] .call-big.is-numeral, [data-cue="alert"] .call-big.is-numeral { min-width: 100%; font-size: clamp(7.5rem, 43vw, 11rem); line-height: 0.84; letter-spacing: 0.005em; }
 [data-cue="warning"] .call-tail, [data-cue="alert"] .call-tail { font-size: 1.375rem; font-weight: 800; }
 
@@ -134,7 +140,7 @@ h1, h2, h3, p, ol, ul { margin: 0; }
 
 /* Deep in the day the band condenses to a single line again, keeping its flood. */
 @media (max-width: 59.999rem) {
-  .is-compact[data-cue="warning"] .call-inner, .is-compact[data-cue="alert"] .call-inner { padding-block: calc(0.5rem + env(safe-area-inset-top)) 0.5rem; row-gap: 0; }
+  .is-compact[data-cue="warning"] .call-inner, .is-compact[data-cue="alert"] .call-inner { padding-block: calc(0.5rem + var(--call-safe-top)) 0.5rem; row-gap: 0; }
   .is-compact[data-cue="warning"] .call-big.is-numeral, .is-compact[data-cue="alert"] .call-big.is-numeral { min-width: 0%; font-size: 4rem; line-height: 0.9; }
   .is-compact[data-cue="warning"] .call-tail, .is-compact[data-cue="alert"] .call-tail { font-size: 1rem; }
   .is-compact[data-cue="warning"] .call-detail, .is-compact[data-cue="alert"] .call-detail { font-size: 0.9375rem; }
@@ -248,9 +254,54 @@ body:not(:has(.plate-now)) .call-inner { position: relative; }
 
 /* Colophon */
 .colophon { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; padding: 1.25rem var(--gutter) calc(2rem + env(safe-area-inset-bottom)); border-top: var(--rule-heavy); color: var(--ink-2); font-size: 0.875rem; }
-.colophon button { padding: 0; background: none; border: 0; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 0.2em; }
-/* 16px, not the colophon's 14: iOS zooms the whole page into any field set smaller than that. */
-.colophon input { font: inherit; font-size: 1rem; padding: 0.375rem 0.5rem; background: var(--ground); color: var(--ink); border: 1.5px solid var(--ink); border-radius: 0; }
+
+/* Preview is one small entry while live. Only rehearsal deploys the thumb-reachable controls. */
+body:has(#preview-dock) { padding-bottom: var(--preview-dock-height); }
+.preview-dock { position: fixed; bottom: 0; left: 0; right: 0; z-index: 10; background: var(--ground); padding-bottom: env(safe-area-inset-bottom); }
+.preview-launcher { display: flex; justify-content: flex-end; padding: 0.375rem max(1rem, calc((100% - 35rem) / 2)); border-top: var(--rule-hair); }
+.preview-entry { display: inline-flex; align-items: center; gap: 0.375rem; min-height: 2.75rem; padding: 0.375rem 0.625rem; border: 1.5px solid var(--ink); background: var(--ground); font-size: 0.875rem; font-weight: 700; }
+.preview-dock button:disabled { opacity: 0.35; cursor: default; }
+.preview-entry:active:not(:disabled), .preview-steps button:active:not(:disabled) { transform: translateY(1px); }
+.preview-controls { border-top: var(--rule-heavy); max-height: 60dvh; overflow-y: auto; overscroll-behavior: contain; }
+.preview-days { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 35rem; margin: 0 auto; border-bottom: 1.5px solid var(--ink); }
+.preview-days button { display: grid; gap: 0.125rem; min-height: 3.25rem; padding: 0.375rem 0.25rem; border: 0; border-left: var(--rule-hair); background: var(--ground); line-height: 1.2; }
+.preview-days button:first-child { border-left: 0; }
+.preview-days .is-selected { background: var(--ink); color: var(--ground); }
+.preview-days .is-selected .tab-date { color: inherit; }
+.preview-days button:focus-visible { outline-color: currentColor; outline-offset: -4px; }
+.preview-scrub { max-width: 35rem; margin: 0 auto; padding: 0.5rem 1rem 0; }
+.preview-description { display: flex; justify-content: space-between; gap: 0.5rem; font-size: 0.875rem; }
+.preview-description label { font-weight: 800; }
+#preview-position { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.preview-track { position: relative; height: 2.75rem; margin-top: 0.125rem; }
+.preview-rail { position: absolute; top: 1.25rem; left: 0.875rem; right: 0.875rem; height: 2px; background: var(--hairline); }
+.preview-rail span { display: block; height: 100%; background: var(--ink); }
+.preview-markers { position: absolute; left: 0.875rem; right: 0.875rem; top: 1.6875rem; pointer-events: none; }
+.preview-marker { position: absolute; top: 0; height: 0.5rem; width: 1px; background: var(--ink); transform: translateX(-50%); }
+.preview-marker.is-booked, .preview-legend i { width: 0.4375rem; height: 0.4375rem; background: var(--tape-pink); border: 1px solid var(--tape-ink); }
+#preview-slider { position: relative; display: block; appearance: none; -webkit-appearance: none; width: 100%; height: 2.75rem; margin: 0; padding: 0; background: transparent; cursor: ew-resize; touch-action: pan-y; }
+#preview-slider::-webkit-slider-runnable-track { height: 2px; background: transparent; }
+#preview-slider::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 1.75rem; height: 1.75rem; margin-top: calc(-0.875rem + 1px); background: var(--ground); border: 2px solid var(--ink); border-radius: 0; }
+#preview-slider::-moz-range-track { height: 2px; background: transparent; }
+#preview-slider::-moz-range-thumb { width: 1.5rem; height: 1.5rem; background: var(--ground); border: 2px solid var(--ink); border-radius: 0; }
+.preview-range { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; margin-top: -0.125rem; font-size: 0.75rem; color: var(--ink-2); font-variant-numeric: tabular-nums; line-height: 1.2; }
+.preview-legend { display: flex; align-items: center; gap: 0.375rem; }
+.preview-legend i { display: block; }
+.preview-steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.625rem; }
+.preview-steps button { display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.375rem 0.5rem; background: var(--ground); border: 1.5px solid var(--ink); font-size: 0.9375rem; font-weight: 800; }
+.preview-exact { margin-top: 0.25rem; }
+.preview-exact summary { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; list-style: none; min-height: 2.75rem; cursor: pointer; color: var(--ink-2); font-size: 0.875rem; }
+.preview-exact summary::-webkit-details-marker { display: none; }
+.preview-exact[open] summary .icon { transform: rotate(180deg); }
+.preview-exact form { padding: 0 0 0.75rem; }
+.preview-exact label { display: block; font-size: 0.875rem; font-weight: 700; }
+.preview-fields { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.625rem; margin-top: 0.375rem; }
+/* Keep the secondary field at 16px so iOS does not zoom when it receives focus. */
+.preview-fields input { min-width: 0; width: 100%; min-height: 2.75rem; padding: 0.375rem 0.5rem; background: var(--ground); color: var(--ink); border: 1.5px solid var(--ink); border-radius: 0; font: inherit; font-size: 1rem; }
+.preview-fields button { padding: 0 1rem; background: var(--ink); color: var(--ground); border: 0; font: inherit; font-weight: 700; }
+.preview-fields button:focus-visible { outline-color: var(--ink); }
+.preview-hint { margin-top: 0.375rem; font-size: 0.75rem; color: var(--ink-2); }
+#preview-input-error { font-weight: 800; color: var(--ink); }
 
 /* Credits page */
 .credits-page { padding: 1.25rem var(--gutter) 3rem; }
@@ -269,7 +320,7 @@ body:not(:has(.plate-now)) .call-inner { position: relative; }
   .call-inner { position: relative; }
   .rehearsal { padding-inline: var(--frame); }
   .stage { display: grid; grid-template-columns: minmax(22rem, 28rem) minmax(26rem, 38rem); justify-content: center; gap: 0 4rem; padding: 1.5rem 2rem 0; }
-  .prompt { display: block; position: sticky; top: 3.5rem; align-self: start; max-height: calc(100dvh - 3.5rem); overflow-y: auto; scrollbar-width: none; }
+  .prompt { display: block; position: sticky; top: calc(3.5rem + var(--preview-header-height)); align-self: start; max-height: calc(100dvh - 3.5rem - var(--preview-header-height) - var(--preview-dock-height)); overflow-y: auto; scrollbar-width: none; }
   /* The band is several times taller than the quiet line; while it shows, the page column scrolls with the page instead of sliding under it. */
   [data-cue="warning"] .prompt, [data-cue="alert"] .prompt { position: static; max-height: none; }
   .order-col { display: block; }
@@ -280,6 +331,16 @@ body:not(:has(.plate-now)) .call-inner { position: relative; }
   .order-inner .tabs { margin-top: 0; }
   .colophon { padding-inline: var(--frame); }
   .credits-page { padding-inline: max(2rem, calc((100% - 44rem) / 2)); }
+}
+
+/* On a short phone, rehearsal tools already take the lower half: use the existing compact call
+   and a shorter plate so the stop still has a visible name, rather than spending the rest on a photo. */
+@media (max-width: 59.999rem) and (max-height: 43rem) {
+  [data-preview="true"] .plate-now { max-height: 20svh; }
+  [data-preview="true"]:is([data-cue="warning"], [data-cue="alert"]) .call-inner { padding-block: 0.5rem; row-gap: 0; }
+  [data-preview="true"]:is([data-cue="warning"], [data-cue="alert"]) .call-big.is-numeral { min-width: 0%; font-size: 4rem; line-height: 0.9; }
+  [data-preview="true"]:is([data-cue="warning"], [data-cue="alert"]) .call-tail { font-size: 1rem; }
+  [data-preview="true"]:is([data-cue="warning"], [data-cue="alert"]) .call-detail { font-size: 0.9375rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

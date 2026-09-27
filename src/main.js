@@ -1,6 +1,8 @@
 import { toNewYork, parseAt } from "./time.js";
 import { computeState } from "./schedule.js";
-import { renderPreviewBanner, renderCall, renderCards, renderPull, renderTabs, renderTimeline, renderError } from "./render.js";
+import { renderCall, renderCards, renderPull, renderTabs, renderTimeline, renderError } from "./render.js";
+import { previewUrl } from "./preview.js";
+import { setupPreview } from "./preview-ui.js";
 
 const DATA_URL = "data/itinerary.json";
 const NOTION_URL = "https://app.notion.com/p/3dabc029903e81b485cfee217af07c64";
@@ -16,15 +18,12 @@ const BAND_COLORS = { warning: "#ffd400", alert: "#c81e1e" };
 const GROUND = { light: "#ffffff", dark: "#0d0d0d" };
 
 const els = {
-  banner: document.getElementById("preview-banner"),
   call: document.getElementById("call"),
   cards: document.getElementById("cards"),
   pull: document.getElementById("pull"),
   order: document.getElementById("order"),
   tabs: document.getElementById("tabs"),
   timeline: document.getElementById("timeline"),
-  previewToggle: document.getElementById("preview-toggle"),
-  previewInput: document.getElementById("preview-input"),
   announce: document.getElementById("announce"),
   themeColor: document.querySelector('meta[name="theme-color"]'),
 };
@@ -34,6 +33,7 @@ const wideLayout = matchMedia("(min-width: 60rem)");
 const darkScheme = matchMedia("(prefers-color-scheme: dark)");
 
 let itinerary = null;
+let previewUI = null;
 let standIns = new Set();
 let selectedDay = null; // null follows today
 let orderOpen = false;
@@ -74,12 +74,13 @@ function applyOrderState(day) {
 }
 
 function render() {
+  if (!itinerary) return;
   const { now, isPreview } = readClock();
   const state = computeState(itinerary, now);
   const shownDay = selectedDay ?? state.dayIndex;
   const day = itinerary.days[shownDay];
 
-  renderPreviewBanner(els.banner, now, isPreview);
+  previewUI.render(now, isPreview);
   const call = renderCall(els.call, state);
   applyCall(call);
   announce(call);
@@ -100,11 +101,9 @@ function updateCompact() {
   else if (isCompact && scrollY < EXPAND_BEFORE_PX) document.body.classList.remove("is-compact");
 }
 
-function setPreview(value) {
-  const url = new URL(location.href);
-  if (value) url.searchParams.set("at", value);
-  else url.searchParams.delete("at");
-  history.replaceState(null, "", url);
+function setPreview(now) {
+  if (!itinerary) return;
+  history.replaceState(null, "", previewUrl(location.href, now));
   selectedDay = null;
   render();
 }
@@ -122,20 +121,6 @@ els.tabs.addEventListener("click", (event) => {
   render();
 });
 
-els.previewToggle.addEventListener("click", () => {
-  els.previewInput.hidden = !els.previewInput.hidden;
-  if (!els.previewInput.hidden) els.previewInput.focus();
-});
-
-els.previewInput.addEventListener("change", () => setPreview(els.previewInput.value));
-
-els.banner.addEventListener("click", (event) => {
-  if (event.target.id !== "preview-exit") return;
-  els.previewInput.value = "";
-  els.previewInput.hidden = true;
-  setPreview(null);
-});
-
 async function start() {
   try {
     const response = await fetch(DATA_URL);
@@ -148,8 +133,10 @@ async function start() {
     renderError(els.cards, NOTION_URL);
     return;
   }
+  previewUI = setupPreview({ itinerary, readClock, selectedDay: () => selectedDay, change: setPreview });
   render();
   setInterval(render, TICK_MS);
+  addEventListener("popstate", render);
   addEventListener("scroll", updateCompact, { passive: true });
   wideLayout.addEventListener("change", render);
   darkScheme.addEventListener("change", render);
