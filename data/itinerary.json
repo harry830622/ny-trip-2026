@@ -12,7 +12,7 @@
     {
       "date": "2026-10-02",
       "title": "Day 1（五）L'Industrie → Little Island → Chelsea → High Line → Vessel → SUMMIT",
-      "note": "以下時間包含步行、等車與排隊預估，下午留 20 分鐘休息／緩衝；前面延誤時先不加點龍蝦堡，再縮短 High Line 散步。目標 16:30 抵達 Vessel，17:10 前往 SUMMIT，19:45 已到街上出發去 Noz 17。",
+      "note": "以下時間包含步行、等車與排隊預估，下午留 20 分鐘休息／緩衝；前面延誤時先不加點龍蝦堡，再縮短 High Line 散步。目標 16:20 抵達 Vessel，17:00 前往 SUMMIT，19:45 已到街上出發去 Noz 17。",
       "stops": [
         {
           "id": "d1-home",
@@ -54,28 +54,28 @@
           "kind": "transit",
           "photo": "photos/ewr.jpg",
           "leaveBy": "09:00",
-          "notes": "已在 YTZ 過美國海關，直接領行李。09:00–09:30 搭接駁巴士到 Airport Train Station → NJ Transit，車票目的地選 New York Penn Station。🚧 EWR AirTrain 施工（7/27–11/13 週一至五 05:00–15:00 往返機場火車站路段停駛，航廈間照常）：跟隨紅色「AirTrain Construction Partial Outage」指標搭接駁，額外預留 10–15 分鐘。",
+          "notes": "已在 YTZ 過美國海關，直接領行李。約 09:00–09:30 離開 Terminal B，搭接駁巴士到 Airport Train Station → NJ Transit，車票目的地選 New York Penn Station；從領完行李起預留 75–90 分鐘，含施工接駁與等車，約 10:15–11:00 到飯店。🚧 EWR AirTrain 施工（7/27–11/13 週一至五 05:00–15:00 往返機場火車站路段停駛，航廈間照常）：跟隨紅色「AirTrain Construction Partial Outage」指標搭接駁，額外預留 10–15 分鐘。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Newark+Liberty+International+Airport",
           "leg": {
             "mode": "transit",
-            "minutes": 60,
-            "label": "接駁巴士 → NJ Transit 到 Penn Station 再走 5 分（10:00–10:30 到飯店）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Newark%20Liberty%20International%20Airport&destination=EVEN%20Hotel%20New%20York%20Times%20Square%20South&travelmode=transit"
+            "minutes": 80,
+            "label": "接駁巴士 → NJ Transit 到 Penn Station 再走 5 分（75–90 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Newark+Liberty+International+Airport+Terminal+B&destination=EVEN+Hotel+New+York+Times+Square+South&travelmode=transit"
           }
         },
         {
           "id": "d1-hotel-drop",
-          "start": "10:30",
+          "start": "10:40",
           "title": "EVEN Hotel 寄行李",
           "kind": "hotel",
           "photo": "photos/hotel.jpg",
-          "leaveBy": "11:00",
-          "notes": "EVEN Hotel Times Square South，321 W 35th St。寄行李、整裝；先穿適合 Noz 17 的衣服，告知櫃台晚餐後回來 check-in，確認保留房間。",
+          "leaveBy": "11:10",
+          "notes": "EVEN Hotel Times Square South，321 W 35th St。寄行李、整裝，預留約 30 分鐘，目標 11:10 出發；先穿適合 Noz 17 的衣服，告知櫃台晚餐後回來 check-in，確認保留房間。若機場交通延誤，後續按實際抵達時間順延並使用下午緩衝。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
-            "minutes": 40,
-            "label": "地鐵去 L'Industrie（含走路、等車）",
+            "minutes": 30,
+            "label": "地鐵去 L'Industrie（地圖約 15–17 分，預留 30 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=L%27Industrie+Pizzeria+104+Christopher+St+New+York&travelmode=transit"
           }
         },
@@ -158,25 +158,25 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=W+16th+St+and+10th+Ave+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 30,
-            "label": "從 High Line 23rd St 出口前往 Vessel（步行與找入口）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=High+Line+23rd+Street+Entrance&destination=Vessel+Hudson+Yards+New+York&travelmode=walking"
+            "minutes": 20,
+            "label": "從 23rd St & 10th Ave 走去 Vessel（地圖約 13 分，含找入口預留 20 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=W+23rd+St+and+10th+Ave+New+York&destination=Vessel+20+Hudson+Yards+New+York&waypoints=W+30th+St+and+10th+Ave+New+York&travelmode=walking"
           },
           "leaveBy": "16:00"
         },
         {
           "id": "d1-vessel",
-          "start": "16:30",
+          "start": "16:20",
           "title": "Vessel",
           "kind": "sight",
           "photo": "photos/vessel.jpg",
-          "leaveBy": "17:10",
-          "notes": "Flex 票待購。預留約 10 分鐘入場緩衝、30 分鐘參觀與拍照。Flex 可彈性選當日抵達時間，仍需排隊；入場較慢就縮短參觀，17:10 出發前往 SUMMIT。",
+          "leaveBy": "17:00",
+          "notes": "Flex 票待購。預留約 10 分鐘入場緩衝、30 分鐘參觀與拍照。Flex 可彈性選當日抵達時間，仍需排隊；17:00 出發前往 SUMMIT。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Vessel+Hudson+Yards+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 40,
-            "label": "7 號線由 34 St–Hudson Yards 到 Grand Central，整段抓 40 分含走路、等車和找入口",
+            "minutes": 30,
+            "label": "7 號線由 34 St–Hudson Yards 到 Grand Central（地圖約 14–15 分，含等車和找入口預留 30 分）；17:30–18:00 留作緩衝",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Vessel%20Hudson%20Yards%20New%20York&destination=SUMMIT%20One%20Vanderbilt%20New%20York&travelmode=transit"
           }
         },
@@ -188,7 +188,7 @@
           "photo": "photos/summit.jpg",
           "booked": true,
           "leaveBy": "19:45",
-          "notes": "已訂 18:00，17:50 到、依票面時間與現場指示排隊。留約 1 小時 45 分給入場與體驗，日落／夜景依天氣和排隊狀況看；穿褲子、舒適鞋，可從這裡看 Empire State Building 外觀。離場電梯也要排隊，19:15–19:20 開始離場，依現場隊伍提早；19:45 前已到街上出發去 Noz 17。",
+          "notes": "已訂 18:00；17:30 到，17:30–18:00 留作交通延誤、休息與入場緩衝，依票面時間及現場指示排隊。留約 1 小時 45 分給入場與體驗，日落／夜景依天氣和排隊狀況看；穿褲子、舒適鞋，可從這裡看 Empire State Building 外觀。離場電梯也要排隊，19:15–19:20 開始離場，依現場隊伍提早；19:45 前已到街上出發去 Noz 17。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Summit+One+Vanderbilt+New+York",
           "leg": {
             "mode": "transit",
@@ -196,7 +196,7 @@
             "label": "直接去 Noz 17（35–45 分），20:20–20:30 到附近",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=SUMMIT%20One%20Vanderbilt%20New%20York&destination=Noz%2017%20458%20W%2017th%20St%20New%20York&travelmode=transit"
           },
-          "arriveBy": "17:50"
+          "arriveBy": "17:30"
         },
         {
           "id": "d1-noz17",
@@ -255,8 +255,8 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Ess-a-Bagel+831+3rd+Ave+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 40,
-            "label": "前往古根漢（含走路與等車 35–45 分），目標 10:15 到館外",
+            "minutes": 30,
+            "label": "前往古根漢（地圖約 20 分，預留 30 分）；約 10:00 到館外，10:30 入場前留作休息／等候",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Ess-a-Bagel+831+3rd+Ave+New+York&destination=Solomon+R.+Guggenheim+Museum+New+York&travelmode=transit"
           },
           "leaveBy": "09:30"
@@ -267,7 +267,7 @@
           "title": "古根漢 Guggenheim",
           "kind": "sight",
           "photo": "photos/guggenheim.jpg",
-          "arriveBy": "10:15",
+          "arriveBy": "10:00",
           "leaveBy": "12:30",
           "notes": "門票待購。1071 Fifth Avenue at 89th St；預留約兩小時含入場安檢，看螺旋建築、Guggenheim Pop: 1960 to Now 與 Taryn Simon: Father Country I Do Love You，依興趣分配時間，12:30 準時離館，前往 13:00 已訂位的 Tha Phraya。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Solomon+R.+Guggenheim+Museum+New+York",
@@ -301,15 +301,15 @@
           ],
           "leg": {
             "mode": "drive",
-            "minutes": 30,
-            "label": "計程車／Uber 前往 Central Park 東南角（5th Ave & 59th St），含等車",
+            "minutes": 25,
+            "label": "計程車／Uber 前往 Central Park 東南角（5th Ave & 59th St），含等車；塞車則按實際抵達順延",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Tha+Phraya+1553+2nd+Ave+New+York&destination=Grand+Army+Plaza+Manhattan+New+York&travelmode=driving"
           },
           "booked": true
         },
         {
           "id": "d2-central-park",
-          "start": "14:30",
+          "start": "14:25",
           "title": "Central Park 短逛",
           "kind": "sight",
           "photo": "photos/gapstow.jpg",
@@ -320,20 +320,20 @@
             "minutes": 5,
             "label": "走回 5th Ave & 59th"
           },
-          "leaveBy": "14:45"
+          "leaveBy": "14:40"
         },
         {
           "id": "d2-fifth-ave",
-          "start": "14:45",
+          "start": "14:40",
           "title": "Fifth Avenue／Rockefeller Center 購物",
           "kind": "shop",
           "photo": "photos/fifth-avenue.jpg",
-          "notes": "約 1 小時 55 分：從 59th St 往南，從清單挑約 3 間重點店，移動、排隊與試穿都算在內，再往 Rockefeller Center 收尾。16:40 離開前往晚餐；最後一站以 Rockefeller／5th Ave 46th–50th St 一帶為主，別在 16:40 才從 59th St 出發。",
+          "notes": "約 2 小時 5 分：從 59th St 往南，從清單挑約 3 間重點店，移動、排隊與試穿都算在內，再往 Rockefeller Center 收尾。16:45 離開前往晚餐；最後一站以 Rockefeller／5th Ave 46th–50th St 一帶為主，16:45 前須已離開 59th St 北段。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Fifth+Avenue+and+59th+Street+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 28,
-            "label": "從 Rockefeller Center 走去 Tonchin（25–30 分），17:05–17:10 到附近",
+            "minutes": 25,
+            "label": "從 Rockefeller Center 走去 Tonchin（地圖約 15–17 分，含找店預留 25 分），目標 17:10 到店",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Rockefeller%20Center%20New%20York&destination=Tonchin%2013%20W%2036th%20St%20New%20York&travelmode=walking"
           },
           "lists": [
@@ -408,7 +408,7 @@
               ]
             }
           ],
-          "leaveBy": "16:40"
+          "leaveBy": "16:45"
         },
         {
           "id": "d2-tonchin",
@@ -421,10 +421,12 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Tonchin+13+W+36th+St+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 15,
-            "label": "走去 Minskoff Theatre",
+            "minutes": 25,
+            "label": "走去 Minskoff Theatre（地圖約 15–17 分，預留 25 分）；18:35 離開餐廳，19:00 到劇院",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Tonchin+13+W+36th+St+New+York&destination=Minskoff+Theatre+New+York&travelmode=walking"
-          }
+          },
+          "arriveBy": "17:10",
+          "leaveBy": "18:35"
         },
         {
           "id": "d2-lion-king",
@@ -446,15 +448,15 @@
         {
           "id": "d2-times-square",
           "start": "22:10",
-          "title": "Times Square 拍照",
+          "title": "Times Square 拍照（45th St 劇院旁）",
           "kind": "sight",
           "photo": "photos/times-square.jpg",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Times+Square+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 1,
-            "label": "走去 M&M's",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Times+Square+New+York&destination=M%26M%27s+Store+Times+Square+New+York&travelmode=walking"
+            "minutes": 5,
+            "label": "從劇院旁走去 M&M's（地圖約 4 分，含人潮 5–10 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Minskoff+Theatre+200+W+45th+St+New+York&destination=M%26M%27s+New+York+1600+Broadway&travelmode=walking"
           }
         },
         {
@@ -496,8 +498,8 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Joe%27s+Pizza+1435+Broadway+New+York",
           "leg": {
             "mode": "drive",
-            "minutes": 8,
-            "label": "吃完叫 Uber 回飯店（深夜不走路）"
+            "minutes": 20,
+            "label": "吃完叫 Uber 回飯店（含等車與車程 15–25 分，深夜不走路）"
           }
         },
         {
@@ -573,8 +575,8 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Conwell%20Coffee%20Hall%206%20Hanover%20St%20New%20York",
           "leg": {
             "mode": "walk",
-            "minutes": 23,
-            "label": "走去 9/11 Memorial（20–25 分）",
+            "minutes": 15,
+            "label": "走去 9/11 紀念廣場（地圖約 10–11 分，預留 15 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Conwell%20Coffee%20Hall%206%20Hanover%20St%20New%20York&destination=National%20September%2011%20Memorial%20New%20York&travelmode=walking"
           },
           "booked": true,
@@ -582,7 +584,7 @@
         },
         {
           "id": "d3-911",
-          "start": "14:40",
+          "start": "14:30",
           "title": "9/11 Memorial",
           "kind": "sight",
           "photo": "photos/911-memorial.jpg",
@@ -590,30 +592,30 @@
           "leg": {
             "mode": "walk",
             "minutes": 20,
-            "label": "走去 Brooklyn Bridge 入口（含找入口；在 Brooklyn Bridge-City Hall 地鐵站旁）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=National+September+11+Memorial+New+York&destination=Brooklyn+Bridge-City+Hall&destination_place_id=ChIJDQXLLyJawokRI-xvbHx0AIM&travelmode=walking"
+            "label": "走去 Brooklyn Bridge 人行入口（Centre St & Park Row，依人行步道指標上橋；含找入口預留 20 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=National+September+11+Memorial+New+York&destination=Centre+St+and+Park+Row+Manhattan+New+York&travelmode=walking"
           },
-          "leaveBy": "15:10",
+          "leaveBy": "15:00",
           "notes": "只逛戶外紀念廣場，不進博物館。"
         },
         {
           "id": "d3-brooklyn-bridge",
-          "start": "15:30",
+          "start": "15:20",
           "title": "走 Brooklyn Bridge → DUMBO",
           "kind": "sight",
           "photo": "photos/brooklyn-bridge.jpg",
-          "leaveBy": "16:30",
-          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Brooklyn+Bridge-City+Hall&query_place_id=ChIJDQXLLyJawokRI-xvbHx0AIM",
+          "leaveBy": "16:20",
+          "mapUrl": "https://www.google.com/maps/search/?api=1&query=Centre+St+and+Park+Row+Manhattan+New+York",
           "leg": {
             "mode": "walk",
             "minutes": 60,
-            "label": "走橋到 DUMBO 拍照點（純走 28 分，加上橋上拍照抓 1 小時）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Brooklyn+Bridge-City+Hall&origin_place_id=ChIJDQXLLyJawokRI-xvbHx0AIM&destination=Washington+St+and+Water+St+DUMBO+Brooklyn&travelmode=walking"
+            "label": "走橋到 DUMBO 拍照點（地圖步行約 30 分，含橋上拍照與人潮預留 1 小時）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Centre+St+and+Park+Row+Manhattan+New+York&destination=Washington+St+and+Water+St+DUMBO+Brooklyn&travelmode=walking"
           }
         },
         {
           "id": "d3-dumbo",
-          "start": "16:30",
+          "start": "16:20",
           "title": "DUMBO 拍照點",
           "kind": "sight",
           "photo": "photos/dumbo.jpg",
@@ -669,10 +671,12 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=EVEN+Hotel+New+York+Times+Square+South",
           "leg": {
             "mode": "transit",
-            "minutes": 40,
-            "label": "步行或地鐵去 MoMA（35–45 分），10:15 左右到附近",
+            "minutes": 25,
+            "label": "地鐵去 MoMA（地圖約 12–13 分，預留 25 分）；到館後留約 20 分鐘入場緩衝",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN%20Hotel%20New%20York%20Times%20Square%20South&destination=MoMA%20New%20York&travelmode=transit"
-          }
+          },
+          "leaveBy": "09:45",
+          "notes": "09:30–09:45 退房寄行李，09:45 出發。"
         },
         {
           "id": "d4-moma",
@@ -685,15 +689,15 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=MoMA+New+York",
           "leg": {
             "mode": "transit",
-            "minutes": 40,
-            "label": "地鐵去 Katz's（含走路、等車）",
+            "minutes": 35,
+            "label": "地鐵去 Katz's（地圖約 25–29 分，含等車與找路預留 35 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=MoMA%20New%20York&destination=Katz's%20Delicatessen%20New%20York&travelmode=transit"
           },
-          "arriveBy": "10:15"
+          "arriveBy": "10:10"
         },
         {
           "id": "d4-katz",
-          "start": "12:25",
+          "start": "12:20",
           "title": "午餐 Katz's Delicatessen",
           "kind": "food",
           "photo": "photos/katz.jpg",
@@ -701,20 +705,20 @@
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Katz%27s+Delicatessen+New+York",
           "leg": {
             "mode": "walk",
-            "minutes": 25,
-            "label": "步行往 Kith／SoHo",
+            "minutes": 20,
+            "label": "步行往 Kith／SoHo（地圖約 12–14 分，預留 20 分）",
             "navUrl": "https://www.google.com/maps/dir/?api=1&origin=Katz's%20Delicatessen%20New%20York&destination=Kith%20337%20Lafayette%20St%20New%20York&travelmode=walking"
           },
-          "leaveBy": "13:25"
+          "leaveBy": "13:20"
         },
         {
           "id": "d4-kith",
-          "start": "13:50",
+          "start": "13:40",
           "title": "SoHo／Nolita 購物 — Kith 旗艦店",
           "kind": "shop",
           "photo": "photos/soho.jpg",
           "leaveBy": "15:00",
-          "notes": "約 1 小時 10 分：Kith（337 Lafayette St）優先，再選一間重點店；含走路、結帳、試穿，15:00 準時出發回飯店（預計 15:30–15:40 到）。",
+          "notes": "約 1 小時 20 分：Kith（337 Lafayette St）優先，再選一間重點店；含走路、結帳、試穿，15:00 準時出發回飯店（預計 15:30–15:40 到）。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Kith+337+Lafayette+St+New+York",
           "leg": {
             "mode": "transit",
@@ -803,8 +807,8 @@
           "leg": {
             "mode": "transit",
             "minutes": 75,
-            "label": "Penn Station → NJ Transit → AirTrain → EWR 航廈（60–90 分）",
-            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN%20Hotel%20New%20York%20Times%20Square%20South&destination=Newark%20Liberty%20International%20Airport&travelmode=transit"
+            "label": "Penn Station → NJ Transit → AirTrain → EWR Terminal B（60–90 分）",
+            "navUrl": "https://www.google.com/maps/dir/?api=1&origin=EVEN+Hotel+New+York+Times+Square+South&destination=Newark+Liberty+International+Airport+Terminal+B&travelmode=transit"
           }
         },
         {
@@ -814,7 +818,7 @@
           "kind": "transit",
           "photo": "photos/ewr.jpg",
           "booked": true,
-          "notes": "目標 17:00–17:30 抵達航廈辦理報到／托運；報到／托運截止 18:25。",
+          "notes": "目標 17:00–17:30 到 Terminal B 二樓 Porter 櫃台辦理報到／托運；報到／托運截止 18:25。",
           "mapUrl": "https://www.google.com/maps/search/?api=1&query=Newark+Liberty+International+Airport"
         },
         {
